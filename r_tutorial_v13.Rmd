@@ -1,0 +1,5124 @@
+---
+title: "R foundation"
+output: learnr::tutorial
+allow_skip: true
+runtime: shiny_prerendered
+author: "Global Bioinformatics Hub (GBH) \nCC BY 4.0"
+description: " Abu B Siddique \nabu.siddique@slu.se"
+---
+
+```{r setup-1, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r setup-2, include=FALSE}
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+library(readr)
+library(tibble)
+```
+
+## Welcome
+### 👋 Welcome to the **R foundation** workshop! 
+#### Tutorials, practical classes or labs
+
+👉 This tutorial series is designed to give you hands-on experience with R programming. Throughout the course, you’ll use these tutorials to practice coding, explore data, and build your analytically skills.
+
+#### 💡Usefull Information: 
+
+📌 Each chapter is structured to help you learn effectively. 
+
+📌 First, you’ll go through each chapter read and execute 📘**examples** that demonstrate key concepts and techniques. 
+
+📌 Then, you’ll apply what you’ve learned through 🧠 **exercises** designed to reinforce your understanding. You will find `💡Hints` or `💡solution` ready.  
+
+📌 You can revisit any section at any time and continue from where you left off. And nothing will be erased when you close the tutorial or RStudio. Of course you can start-over if wish. 
+
+
+#### 📚 Tutorial Chapters and goals⤵️: 
+* **Introduction to RStudio**:
+Understand and describe R and RStudio and how they works
+
+* **Variables and Operators**:
+Understand the basics of R: creating variables, working with different data types, and using operators.
+
+* **Vectors data structure**: 
+Learn how to work with vectors in R.
+
+* **Data structures in R**: 
+Learn how to work with vectors, lists, matrices, arryas and data frames—core structures for handling data in R.
+
+* **Exploring and navigating data in R**
+Discover codes for exploring data sets to gain initial insights.
+
+* **Control structures and functions**
+explore control structures (if-else, loops) and functions in R.
+
+* **How to Look at a Data set?**: 
+Discover codes for exploring data sets to gain initial insights.
+
+* **Tidy Data (tidyr📦)**: 
+Learn the principles of tidy data and how to organize your datasets for efficient analysis.
+
+* **Transform Data (dplyr📦)**: 
+Use tools like dplyr to clean, reshape, and merge datasets for deeper analysis.
+
+* **Data Visualization (ggplot2📦)**: 
+Create compelling and publishable figures/plots using the powerful ggplot2 package.
+
+* **Statistics in R**: 
+Apply statistical techniques and models to analyze data and draw meaningful conclusions.
+
+Each section or chapter is designed to build your confidence and skills step by step. Let’s dive in and start exploring R! 🚀
+
+[© CC BY 4.0]
+
+
+## 👉R & RStudio tour [W1 D1]
+
+In this chapter, we will introduce you with the **R** , **RStudio** IDE interface, **commands** and basic **R script** or operations. 
+
+📌 **Important note**: If you have installed R and RStudio already, you are ready to begin this chapter! If not, then check (see below) and install them.
+
+### 1. R 
+If you type 'R' in the search 🔍 box, you may see 'R.4.4...' or something like that. if you click 🖱 on it, it opens R: 'RGui' (R graphical user interface) which has the R console window as like as bellow:
+
+<a href="https://forum.posit.co/uploads/default/optimized/3X/7/0/70baebfb866ed17833d04329045765c1d7232190_2_1380x730.jpeg" target="_blank">
+  <img src="https://forum.posit.co/uploads/default/optimized/3X/7/0/70baebfb866ed17833d04329045765c1d7232190_2_1380x730.jpeg" width="500" style="border-radius:8px;">
+</a>
+
+You already knew what is R from the lecture 'week1 Day1'. if not: [What is R?](https://www.r-project.org/about.html)
+
+🧩 We will not use `Rgui` as `RStudio` app already has it as built-in. So just search  🔍 RStudio and open RStudio and do rest:   
+
+💡**Practice this chapter in RStudio to maximize your understanding**💡
+
+RStudio is an 'integrated development environment (IDE)' designed to help you be more productive in your daily data science work.
+
+📌After you have installed R and RStudio, you are ready to begin this section!
+
+When you start RStudio, you’ll see four key regions or “panes” in the interface: the 'Source pane', the 'Console pane', the 'Environment pane' and the 'Output Pane'.
+
+### 2. 🖥 The Four Panes of RStudio💻 
+
+
+<a href="https://docs.posit.co/ide/user/ide/guide/ui/images/RStudio-panes-labeled.jpeg" target="_blank">
+  <img src="https://docs.posit.co/ide/user/ide/guide/ui/images/RStudio-panes-labeled.jpeg" width="500" style="border-radius:8px;">
+</a>
+
+- **Source Pane**: Top-left, used for `writing and editing scripts`. 
+- **Console Pane**: Bottom-left, where `you run R commands interactively`. 
+- **Environment/History Pane**: Top-right, `displays loaded variables and command history`. 
+- **Output/Files/Plots/Packages/Help/Viewer Pane**: Bottom-right, for `file browsing, plots, install packages, help pages, and web content`.
+
+> 💡 🧭 Explore the interface of RStudio and try hovering over each pane to see what they contain.
+
+---
+
+### 3. 📂 Get or Set a Working Directory
+#### Get Working Directory
+If you want to know where are you in your R or RStudio or in this instance
+or what is your current working directory, `getwd()` function helps you to find that:
+
+use `getwd()` function to *g*et your current *w*orking *d*irectory printed
+
+```{r getwd, exercise=TRUE}
+getwd()
+```
+`getwd()` returns an absolute 'file path' or 'folder path' or 'directory path' representing the current working directory of the R process
+
+#### 📂 Set Working Directory
+It's a good idea to *set* your *w*orking *d*irectory  where your R project files are stored. Or be there from where (folder) you like start working on R.
+Use `setwd()` function (a default built-in function) to do that.
+
+`setwd(new_folder)` is used to set the working directory to *new_folder* directory or folder 📂 or place or location. Let's try to execute the `setwd()` function or command:
+```{r setwd, exercise=TRUE}
+# Set your working directory (modify the following folder to your own)
+setwd("new_folder")
+```
+
+It says `cannot change working directory`. 
+⚠️ error ⚠️ That means either you do not have this directory or this location is a tutorial instance (if you run it from website: https or URL). That means that we have to create a 'new_folder'📂 first (see next point)
+
+📌 We use `setwd()` to move from an existing location (folder) 📂 to new location (folder📂) based on our need.
+
+---
+
+
+### 4. 📂 Create and Move into a Folder 📂
+
+step 1: Let's create a 'new_folder' 📂 by `dir.create()`. 
+step 2: use `setwd()` to change location to the 'new_folder'. 
+step 3: use `getwd()` to print entire 'file path' to see if we moved to the 'new_folder'
+
+```{r create-folder, exercise=TRUE}
+dir.create("new_folder") # Create a folder
+
+setwd("new_folder")      # Set new_folder as your working directory
+
+getwd()                  # print path to see if you have moved to new_folder
+```
+📌 yes we see the folder path & 'new_folder' is printed at the end
+
+📌 We create folder 📂 to organize our files.
+
+📌 `getwd` returns an absolute 'file path' representing the current working directory
+
+---
+
+### 5. 📝 Create a New R Project 📄 
+
+Some will say I create a new project in RStudio. Creating a project in RStudio helps to *organize your work*. How to create a new R project via the RStudio 'menu':
+
+**File > New Project > New Directory > New Project**
+
+> ⚠️📝 This step is performed via the RStudio interface, not in this instance.
+
+---
+
+### 6. 📦 Install the `tidyverse` Package📦 in RStudio (but not in this tutorial)
+📌 `tidyverse` is a collection of R packages📦📦📦 for data science. We used some packages from `tidyverse` packages (you knew from the lecture) in the **entire tutorial**.
+
+```{r install-tidyverse, exercise=TRUE, eval=FALSE}
+# install.packages("tidyverse")   # remove first 👉 # to run in your RStudio
+```
+How to install tidyverse📦 in RStudio?
+
+⚠️📌 do not run `install.packages("tidyverse")` when you are in this tutorial's instance because we already have done that in the background. But **install only when you are in your RStudio at PC or laptop**. 
+**To install tidyverse📦 in RStudio**: remove first '#' to rerun in your RStudio and run
+
+> ⚠️ Installing packages should typically be done only once per system. This line is not evaluated automatically in the tutorial to avoid repeated installations.
+
+<a href="https://hbctraining.github.io/Intro-to-R/img/install_vs_library.jpeg" target="_blank">
+  <img src="https://hbctraining.github.io/Intro-to-R/img/install_vs_library.jpeg" width="500" style="border-radius:8px;">
+</a>
+
+
+### 7. 📦 Load the `tidyverse` package (but not in this tutorial)
+
+Once tidyverse📦 installed in RStudio, you can load it with `library()`.
+
+```{r load-tidyverse, exercise=TRUE}
+# Load tidyverse into your R session
+library(tidyverse)   # attach the package
+```
+
+⚠️📌 if you get error message here (`there is no package called 'tidyverse'`) that means you have not installed `tidyverse` 📦 yet. It is OK, no need to install for this tutorial or instance.**You should not install** while you are doing this tutorial series.
+
+---
+
+### 8. 📜 Start, Manage, and Save a **R Script**
+
+To create and manage a R script go to (click on):
+
+- **File > New File > R Script**
+- Save 💾 the script using **File > Save As**.
+
+Name the file📝 `example_script.R`.
+
+> ✍️ Once you've created the script, try copying and pasting the following content into it:
+```r
+print("Hello, RStudio!")
+```
+
+---
+
+### 9. 📜 Execute an **R Script**
+
+Steps:
+
+- create an example R script, e.g. 'example_script' 
+- write some codes or texts in the script 
+- run scripts using `source()`.
+
+```{r run-script, exercise=TRUE}
+# Save a script and run it
+example_script <- 'print("Hello, RStudio!")' # assign texts to an object
+writeLines(example_script, "example_script.R") # write it in the script
+source("example_script.R") # execute the script
+```
+🎉 Hurrah!🎉 You have just successfully run a **R script**! 🙌
+
+#### explanation (📝 What this above 'R chunk' does): 
+
+* 2nd line stores the text `print("Hello, RStudio!")` as an R object named `example_script`.
+* 3rd line writes 📝 the contents of `example_script` into a file named `example_script.R`. 
+* 4th line executes▶️ the script using `source()`, which runs the code inside the file and prints the message. 
+
+> As you know how to make r script and execute, try to make and execute a r script on your own. 
+💡Tips: make or copy any r code blocks or chunk or chunks from anywhere of the tutorial, and paste it in a rscript file and save as `example_script.R` or any name you want, and execute it as `source("example_script.R")` 
+
+---
+
+### 10. 🔍 'Help' in RStudio ❓
+
+There are multiple ways to get help in R:
+
+⚠️ Following R block will open two *new browser windows*, but you can return back to the tutorial ⬅️ 
+```{r help-mean, exercise=TRUE}
+# Help using the help() function
+help(mean)
+
+# Or using the question mark shortcut
+?mean # results pops up in a new window (return when you are done)
+```
+
+> 💡Tips: You can also press **F1** button while in RStudio while your cursor is on a function name to view its documentation in RStudio.
+
+---
+
+[More on Intro on RStudio](https://www.princeton.edu/~otorres/RStudio101.pdf) 
+[🎬 ](https://youtu.be/zAnjss-fFqA)
+
+### Well done! 🎉
+
+You've completed the introduction to RStudio and basic R commands! 🎉
+You're off to a great start!
+
+Next chapter ⤵️
+
+## 👉Variables and Operators [W1 D2]
+### Variables, Variable's types & Operators
+In this chapter, you will learn about various `elements` of a programming language, apply commands or run function and see how they are realized in `R`.
+
+
+Let's start!
+
+### 1. Variable (object)
+
+A *variable* is a `name` to which we assign information that stores `data`.
+
+Calculate sum of the following values (add one value with another)
+```{r cal, exercise=TRUE, exercise.lines = 1}
+6 + 4
+```
+
+We can do this calculation differently by using `assignment operator` `<-`
+
+### Operator
+In R, an operator is a symbol or function that performs an operation on one or more values (called operands). Operators are essential for performing calculations, comparisons, logical tests, and more. 
+
+💡Tip: For detail see [all types operators](https://www.w3schools.com/r/r_operators.asp)
+
+#### Use of *assignment operator*
+example: 
+```{r assign-1, exercise=TRUE, exercise.eval=TRUE}
+a <- 6
+
+a
+```
+Here `a` is a `variable` or an `object` and is saved in R 
+
+More practice:
+```{r assign-2, exercise=TRUE}
+b <- 4
+
+b
+```
+Here `b` is an `object` too. 
+
+
+Now you can sum them
+```{r cal-vector, exercise=TRUE}
+a <- 6
+b <- 4
+a + b
+```
+
+you can even `assign` this calculation to a `new` object from this 
+```{r assign_again, exercise=TRUE}
+a <- 6
+b <- 4
+
+c <- a + b
+c
+```
+
+We are not limited to numbers; we can assign `characters` too:
+
+```{r assign_text, exercise=TRUE}
+text1 <- 'r'
+text1
+```
+📌 **Note**: You realized that `' '` or `""` is used around the 'texts' for all kind of `character` assignment in R
+
+another example:
+```{r assign_text_num, exercise=TRUE}
+text2 <- 't20'
+text2
+```
+
+There are `three` equivalent `ways of assigning` in R, so you can choose any one
+
+way 1
+
+```{r assignment_style1, exercise=TRUE}
+val <- 3
+val
+```
+
+way 2
+
+```{r assignment_style2, exercise=TRUE}
+val = 3
+val
+```
+
+way 3
+
+```{r assignment_style3, exercise=TRUE}
+3 -> val
+val
+```
+
+📌 Note: It is best to use `<-` for assignments to avoid confusion. Use `=` only for function arguments like `f(a = 3)`.
+
+
+###  2. Variable Naming
+
+Syntactically valid names consist of letters, numbers, dots or underscores, and must start with a letter or a dot not followed by a number. *Reserved words cannot be used as variable names*.
+
+❗ Reserved words include:
+
+* `if`, `else`, `repeat`, `while`, `function`, `for`, `in`, `next`, `break`, `TRUE`, `FALSE`, `NULL`, `Inf`, `NaN`, `NA`, etc. 
+
+* Cannot use: `c`, `q`, `t`, `C`, `D`, `I` 
+* Should not use: `T`, `F`. 
+
+💡Naming tips:
+
+* Make names informative. 
+* Use consistent notation: camelCase, dot.notation, or dash_notation. 
+* Avoid very long names. 
+* Avoid variable names like `my.variable.2`; prefer `my.variable2`.
+
+### 3. Variable Types
+
+Variables can be of several types:
+
+* **Numeric (e.g. 2, 4.19) **
+* **Integer (e.g. 2)** 
+* **Character (e.g. karim)** 
+* **Logical (TRUE/FALSE/NA)** 
+* **Complex (e.g. 5 + 2p)** 
+
+```{r assign_num_decimal, exercise=TRUE}
+x <- 41.99
+typeof(x)
+```
+🔹 What is a Double in R? 
+
+- A 'double' is a type of `numeric` vector that can store 'decimal' values. 
+
+- It is the default numeric type in R when you create numbers with decimals. 
+
+```{r assign_a_range, exercise=TRUE}
+x <- 1:3
+x
+```
+
+How to check how thing are recognized
+```{r assign_a_range_check_structure, exercise=TRUE}
+x <- 1:3
+x
+
+class(x)
+typeof(x)
+mode(x)
+storage.mode(x)
+```
+
+In R, the term **numeric** is a general data type that includes both:
+
+- **double** (floating-point numbers, e.g., 3.14, 42) and 
+- **integer** (whole numbers, e.g., 5L)
+
+
+### 4. Changing variable types (casting):
+
+```{r assign_integer_check, exercise=TRUE}
+y = 12
+class(y)
+typeof(y)
+```
+
+🔹 What is numeric in R? 
+
+- numeric is the default mode for numbers in R. 
+- When you create a number like x <- 5, R stores it as a double, but it is still considered numeric.
+
+
+```{r convert_to_integer_check, exercise=TRUE}
+y = 12
+
+z <- as.integer(y)  # treat y as an integer
+class(z)
+typeof(z)
+
+# call a `logical` variable as output
+is.integer(z) 
+```
+
+
+📌 **Note**: 
+- In R, functions that start with **`as.`** are used to indicate type conversion—that is, converting an object from one type (or class) to another.
+
+🧠 Why use `as.` functions?
+
+- to prepare object or data for analysis or modeling.
+- to ensure compatibility with functions that require specific object or data types.
+
+- anything starts with `#` is a `comment` in  R, it is not `code` or `command` anymore
+
+- In R, functions that start with `is.` are used to check the type or property of an object. They return a logical value: `TRUE` or `FALSE.`
+
+🧠 Purpose of `is.` functions:
+They help you verify what kind of data you're working with, which is especially useful for:
+Debugging, Conditional logic, and Data validation
+
+
+More on casting:
+
+```{r pi, exercise=TRUE}
+pi <- 3.1415926536
+pi
+
+as.integer(pi)  # transform to integer
+
+pi <- as.double(pi)   # transform to double
+```
+
+
+```{r pi2, exercise=TRUE}
+as.integer(3.14)
+as.integer(3.51) # its always make a round figure
+```
+
+```{r pi_check, exercise=TRUE}
+round(3.51, digits = 1) # make specific length after '.' as like as we learned in school.
+```
+
+Coercion examples:
+```{r Coercion, exercise=TRUE}
+as.numeric('4.5678')
+as.double('4.5678')
+as.numeric('R course is cool!')
+```
+
+`as.numeric('R course is cool!')` code block returned 'NA' because R can not turn a 'text' into a 'numeric' value, if you do it becomes something unknown means 'NA'.
+
+
+*Complex numbers:*
+```{r complex, exercise=TRUE}
+c = 7 + 4i
+c
+class(c)
+typeof(c)
+is.complex(c)
+```
+
+Logical type:
+
+```{r Logical_type1, exercise=TRUE}
+e <- 7 > 2
+e
+```
+
+
+```{r  Logical_type2, exercise=TRUE}
+f <- 2 >= 7
+f
+```
+
+
+```{r Logical_type_check1, exercise=TRUE}
+e <- 7 > 2
+e
+
+class(e)
+typeof(e)
+```
+
+
+```{r  Logical_type_check2, exercise=TRUE}
+d <- c(TRUE, FALSE, NA)
+d
+```
+
+assign names as charecter
+```{r  Logical_type_check3, exercise=TRUE}
+names(d) <- as.character(d)
+d
+```
+
+```{r  logical_1, exercise=TRUE}
+g <- TRUE
+g
+```
+
+
+```{r  logical_2, exercise=TRUE}
+g <- T
+g
+
+is.logical(g)
+typeof(g)
+```
+
+`R` read `TRUE` as '1' and `FALSE` as '0'.  So see how it behave when you do arithmetics
+```{r  logical_3, exercise=TRUE}
+x <- TRUE
+y <- FALSE
+x + y
+2 * x
+x * y
+```
+
+So, Avoid using T or F as `variable names`:
+
+```{r  avoid, exercise=TRUE}
+F <- T
+T
+F
+```
+Now you see `false became true!`
+
+
+Character type:
+
+```{r  chr, exercise=TRUE}
+character <- 'c'
+character
+
+text <- 'This is my first sentence in R.'
+text
+
+class(text)
+typeof(text)
+```
+
+Treat `number` as `character` 
+```{r  chr_to_num, exercise=TRUE}
+number1 <- 3.14                       # assign a number (3.14) to a variable
+number1.text <- as.character(number1)  # turn it into character
+
+number1.text                          # print
+
+class(number1.text)                   # check class of the variable
+```
+see, `"` is appeared around the number
+
+Now, treat `character` as `number`
+```{r chr_to_num2, exercise=TRUE}
+number2.text <- "3.14"                 # assign a number (3.14) as a character variable with "" 
+
+# now turn it into number
+number2 <- as.numeric(number2.text)     # turn it into number
+number2                                # print
+class(number2)                          # check class of the variable
+```
+See, no `"` around the number
+
+
+### 5. Strings
+"String" is the content (e.g., "data", "This is R").
+"Character" is the data type that holds strings.
+
+
+Basic string operations:
+```{r  text1, exercise=TRUE}
+text1 <- "Bangladesh is a "
+text2 <- "develpoing country"
+```
+
+add texts together
+```{r  text2, exercise=TRUE}
+text1 <- "Bangladesh is a "
+text2 <- "develpoing country"
+
+
+result <- paste(text1, text2, ".", sep='') # add texts
+result                                     # print new string
+```
+
+call sub string or specific 'alphabet' or  'letter' 
+```{r  sub_string, exercise=TRUE}
+text1 <- "Bangladesh is a "
+text2 <- "develpoing country"
+result <- paste(text1, text2, ".", sep='') # add texts
+
+sub("super eight", "semi final", result)
+substr(result, start = 1, stop = 5)
+```
+
+Printing with `sprintf`:
+
+```{r print, exercise=TRUE}
+txt <- "blue"
+val <- 345.78
+
+sprintf("The weight of a %s ball is  %f g", txt, val)
+
+text1 <- "Bangladesh"
+text2 <- "darkgreen"
+text3 <- "red"
+sprintf("The flag of %s is made of %s and %s ", text1, text2, text3)
+```
+
+### ✅ Summary
+
+- Variables are names or objects.
+- To assign variables we use operators.
+- Variables can be of types: numeric, logical, complex, character.
+- Numeric includes: integer, double, floats.
+- strings are texts within "". 
+Thanks for listening, Now its your turn!
+
+
+### Breakout room session (do **exercises** yourself or as a group)
+Do following **exercises**
+
+### Exercises 
+#### Exercise 1. Create variables `var1` and `var2` and initialize them with two integers of choice and print the variables
+
+
+📌 **Tips**: 
+
+<a href="https://education.RStudio.com/blog/2020/05/learnr-for-remote/hint.png" target="_blank">
+  <img src="https://education.RStudio.com/blog/2020/05/learnr-for-remote/hint.png" width="500" style="border-radius:8px;">
+</a>
+
+📌 We have given some hints⬇️ under the `💡Hints` box, 
+you can 🖱️`click` on `💡Hints`(only if you need help) and read the solution and copy them if you wish.
+
+```{r ex1, exercise=TRUE, exercise.eval=TRUE}
+
+```
+
+
+```{r ex1-hint-1}
+var1 <- 8
+
+var1 # this will print what is saved in 'var1' 
+
+# or use `print` command
+print(var1)  # show what is saved under var1
+```
+
+```{r ex1-solution}
+var1 <- 8
+
+var1
+
+var2 <- 369
+
+var2
+```
+
+#### Exercise 2. Sum the two variables (use `'+'` operator) and save them as a new variable named `var3` and print the result.
+
+```{r ex2, exercise=TRUE, exercise.eval=TRUE}
+
+```
+
+```{r ex2-hint-1}
+var1 <- 8
+var2 <- 369
+
+var1 + var2  # addition
+```
+
+```{r ex2-hint-2}
+var1 <- 8
+var2 <- 369
+
+var3 <- var1 + var2  # assign addition to a new variable
+
+var3
+```
+
+#### Exercise 3. Check the `class`, `mode`, and `type` for *var1*, *var2*, *var3*.
+
+```{r ex3, exercise=TRUE, exercise.eval=TRUE}
+
+```
+
+```{r ex3-hint-1}
+class()
+mode()
+typeof()
+```
+
+```{r ex3-hint-2}
+var1 <- 8
+var2 <- 369
+var3 <- var1 + var2  # assign addition to a new variable
+
+class(var1)
+mode(var1)
+typeof(var1)
+```
+
+
+```{r ex3-hint-3}
+var1 <- 8
+var2 <- 369
+var3 <- var1 + var2  # assign addition to a new variable
+
+class(var1)
+mode(var1)
+typeof(var1)
+
+class(var2)
+mode(var2)
+typeof(var2)
+
+class(var3)
+mode(var3)
+typeof(var3)
+```
+
+
+#### Exercise 4. Create two character variables containing a text of choice. Check the `class`, `mode` and `type` of the first one.
+
+```{r ex4, exercise=TRUE, exercise.eval=TRUE}
+
+```
+
+```{r ex4-hint-1}
+var1_chr <- "tutorial"
+
+var2_chr <- "like this tutorial"
+
+```
+
+```{r ex4-hint-2}
+class()
+mode()
+typeof()
+```
+
+
+```{r ex4-hint-3}
+class(var1_chr)
+mode(var1_chr)
+typeof(var1_chr)
+```
+
+
+#### Exercise 5. Sum `var1` to it. What is the result and why?
+
+
+```{r ex5, exercise=TRUE, exercise.eval=TRUE}
+
+```
+
+```{r ex5-hint-1}
+var1_chr <- "tutorial"
+var1 <- 8
+
+var1_chr + var1
+
+```
+It says: `Error in var1_chr + var1 : non-numeric argument to binary operator`
+Reason: we tried to sum a character to a number which is not possible in reality.
+
+#### Exercise 6. Convert `var3` to an integer, cast an integer variable to double, cast a string to a double.
+
+```{r ex6, exercise=TRUE, exercise.eval=TRUE}
+
+```
+
+```{r ex6-hint-1}
+var3 <- 25.67
+```
+
+
+```{r ex6-hint-2}
+# Convert var3 to integer
+var3 <- 25.67
+int_var3 <- as.integer(var3)
+```
+
+
+```{r ex6-hint-3}
+# Cast an integer to double
+int_value <- 10
+double_value <- as.double(int_value)
+```
+
+
+```{r ex6-hint-4}
+# Cast a string to double
+str_val <- "12.345"
+numeric_val <- as.numeric(str_val)
+```
+
+
+```{r ex6-hint-5}
+var3 <- 25.67
+
+# Convert var3 to integer
+int_var3 <- as.integer(var3)
+
+# Cast an integer to double
+int_value <- 10
+double_value <- as.double(int_value)
+
+# Cast a string to double
+str_val <- "12.345"
+numeric_val <- as.numeric(str_val)
+
+int_var3
+double_value
+numeric_val
+```
+
+#### Exercise 7. Create two character variables containing two verses of your favorite song.
+   - Concatenate the two variables.
+   - Paste the variables with `'*'` as separator.
+   - Find if `and` occurs in the second line.
+   - Substitute a word for another.
+   - Extract sub-string starting at the 5th character and 5 characters long.
+
+
+
+
+
+
+```{r ex7, exercise=TRUE, exercise.eval=TRUE}
+
+```
+
+```{r ex7-hint-1}
+# Character variables
+line1 <- "You are my sunshine"
+line2 <- "My only moon and stars"
+```
+
+
+```{r ex7-hint-2}
+# Concatenate
+full_song <- paste(line1, line2)
+full_song
+```
+
+
+```{r ex7-hint-3}
+# Paste with '*'
+pasted <- paste(line1, line2, sep = "*")
+pasted
+```
+
+
+```{r ex7-hint-4}
+# Find if "and" occurs in second line
+has_and <- grepl("and", line2)
+has_and
+```
+
+
+```{r ex7-hint-5}
+# Substitute "moon" with "light"
+new_line2 <- sub("moon", "light", line2)
+new_line2
+```
+
+
+```{r ex7-hint-6}
+# Character variables
+line1 <- "You are my sunshine"
+line2 <- "My only moon and stars"
+
+# Extract 5 characters starting from 5th character
+full_song <- paste(line1, line2)
+
+substr(full_song, start = 5, stop = 9)
+
+```
+
+#### Congratulations 🎉
+
+### ✅ Summary
+
+You've learn different elements of R programming such as `variable`, `operator`; and how to assign variables, their `types`, and how to `change types`. When you are ready, go on to the next tutorial to learn `Complex Data Structures`.
+
+Next chapter ⤵️
+
+
+## 👉Vectors [W1 D2]
+In this chapter, you will learn what is `vector`, `vector` data structures & vector type, combining vectors, how to `index` elements, their `removal` or `substitution`, and how to `factorize`. 
+
+. 
+
+
+`Vector` is Basic data structure. Using the previously discussed basic data types
+(`numeric`, `integer`, `logical` and `character`) one can construct more complex data structures.
+
+### 1. Atomic Vectors
+
+An *atomic vector*, or simply a **vector** is a one dimensional data structure (a collection) of elements of the same data type.
+Elements of a vector are officially called *components*,
+but we will just call them *elements*.
+
+We construct vectors using core function `c()` (c means construct).
+`c()` means Combine Values into a Vector or List
+
+```{r vector_elements, exercise=TRUE}
+vec <- c(1,2,5,7,9,27,45.5)
+vec
+```
+
+### 2. Combining Vectors
+
+```{r combine, exercise=TRUE}
+# lets create some vector first
+v1 <- c(1,3,5,7.56)
+v1
+
+v2 <- c('a','b','c')
+v2
+
+v3 <- c(0.1, 0.2, 3.1415)
+v3
+
+# combine vectors
+v_all <- c(v1, v2, v3)
+v_all
+```
+
+###  3. Basic Vector Arithmetics
+
+```{r arithmatic, exercise=TRUE}
+v1 <- c(1, 2, 3, 4)
+v2 <- c(7, -9, 15.2, 4)
+
+# use like as calculator
+v1 + v2
+v1 - v2
+v1 * v2
+v1 / v2
+```
+
+###  4. Vector Indexing or positioning
+call by Position
+```{r index1, exercise=TRUE}
+vec <- c('a', 'b', 'c', 'd', 'e')
+vec
+
+# who is in these positions: 1 & 5
+vec[1]
+vec[5]
+
+# call vector except specific position, to do that we use '-'
+vec[-1]
+vec[-2]
+```
+####  4.1. Vector Indexing Continued
+
+```{r index2, exercise=TRUE}
+vec <- c('a', 'b', 'c', 'd', 'e')
+vec.ind <- c(1,3,5)
+vec[vec.ind] # calling by some position
+
+# use logical type
+vec.ind <- c(TRUE, FALSE, TRUE, FALSE, TRUE)
+vec[vec.ind]
+```
+
+#### 4.2. Named Indexing
+assign names
+```{r index3, exercise=TRUE}
+vec <- c(23.7, 54.5, 22.7)
+names(vec) <- c('sample1', 'sample2', 'sample3') # assign names
+vec
+vec[c('sample2', 'sample1')] # call by names
+```
+
+### 5. Removing Elements
+
+```{r rm, exercise=TRUE}
+vec <- c(1, 2, 3, 4, 5)
+vec[-5]
+vec[-(c(1,3,5))]
+```
+
+### 6. Conditional Indexing
+
+```{r con, exercise=TRUE}
+vec <- c(1, 2, 3, 4, 5)
+vec < 3
+vec[vec < 3]
+```
+
+### 7. Reverse Vector
+
+```{r rev, exercise=TRUE}
+vec <- c(1, 2, 3, 4, 5)
+rev(vec) # 
+```
+
+### 8. Vector Size
+Length of an Object
+```{r size, exercise=TRUE}
+vec <- c(1:50)
+vec
+
+length(vec) # Length of an Object
+```
+
+### 9. Substitute Elements
+
+replace
+```{r subs, exercise=TRUE}
+vec <- c(1:6)
+vec[3] <- 'a'
+vec
+
+```
+
+### 10. Round Values
+
+```{r round, exercise=TRUE}
+vec <- c(2.86653, 7.286524, 9.562432) 
+round(vec, digits=3)
+```
+
+### 11. Sorting
+
+```{r sort, exercise=TRUE}
+vec <- c(1:5, NA, NA, 1:3)
+vec
+
+sort(vec) # sorten
+
+sort(vec, na.last = TRUE) # send NA at the end of the list
+
+sort(vec, decreasing = TRUE) # decrease
+```
+
+### 12. Functions on Vector
+Function is a `block of codes` that does specific `task` in R , e.g. function `max()` can calculate `maximum value` out of a vector or data. 
+📌 **Note**: We will discuss 'function' in detail on in chapter: **Control structures & function**. 
+Some useful default functions we
+```{r func-1, exercise=TRUE}
+v1 <- c(5,8,7,18,28)
+max(v1)     # highest value
+min(v1)     # lowest value 
+sum(v1)     # total values
+```
+
+`max()`, `min()`, and `sum()` are some 'built-in functions' in R.
+
+more 'arithmetic' functions:
+```{r func-1p2, exercise=TRUE}
+v1 <- c(5,8,7,18,28)
+prod(v1)    # product of all the values
+
+diff(v1)    # Lagged Differences (8-5, 7-8, 18 -7, 28 - 18)
+cumsum(v1)  # cumulative total (5, 5 + 8, 13 + 7, 20 + 18 , 38 +2 8)
+prod(v1)    # product of all the values (5×8×7×18×28)
+```
+
+
+### 13. Factors (factorization)
+We can force R to make a new category by the `factor()` function
+```{r factor1, exercise=TRUE}
+vec <- c('giraffe', 'donkey', 'liger', 'liger', 'giraffe', 'liger')
+vec
+
+vec.f <- factor(vec) # encode a vector as a factor 
+vec.f
+
+summary(vec.f)
+
+as.numeric(vec.f)
+```
+
+#### 13.1 Custom Labels for Factors
+If you like R to read as you wish, the you can give a names or numbers as `labels`
+```{r factor2, exercise=TRUE}
+vec.f <- factor(vec, levels=c('donkey', 'giraffe', 'liger'), 
+                labels=c('zonkey','Sophie','tigon'))
+vec.f
+
+summary(vec.f)
+```
+
+#### 13.2 Ordered Factors
+
+```{r factor3, exercise=TRUE}
+vec <- c('tiny', 'small', 'medium', 'large')
+
+factor(vec)
+factor(vec, ordered=T) # order the list
+```
+
+
+### 🧠 Exercises
+#### Exercise 8: Create and Modify Vectors
+
+Create two vectors `p` and `q`, 
+then perform operations like `addition`, and 
+`multiply` with `2`, 
+perform `length` checking, and 
+calculate `mean` of the vector at the end.
+
+
+```{r exe1, exercise=TRUE}
+
+```
+
+```{r exe1-hint-1, hint=TRUE}
+"Hint 1: Use `c()` to create a vector."
+```
+
+```{r exe1-hint-2, hint=TRUE}
+"Hint 2: Try using `sum()`, `mean()`, 
+or `length()` to analyze the vector."
+```
+
+```{r exe1-solution, echo=TRUE}
+# Create two vectors
+p <- c(3, 6, 9)
+q <- c(6, 8, 15)
+
+# Explore length and element-wise operations
+length(p)
+length(p + q)
+
+sum(p)
+sum(q * q)
+p + q
+
+# Multiply and calculate mean
+r <- p * 2
+r
+length(r)
+
+r.mean <- mean(r)
+length(r.mean)
+```
+
+
+#### Exercise 9: Working with Factors
+
+Convert a character vector into a factor with custom labels.
+
+```{r exe2, exercise=TRUE}
+
+```
+
+```{r exe2-hint, hint=TRUE} 
+"Use the `factor()` function and 
+the `labels` argument to rename factor levels."
+
+```
+
+```{r exe2-solution, echo=TRUE}
+# make a vector
+fact1 <- c('Liton', 'Shommoy', 'Sahanto', 'Sakib', 'Taskin', 'Tanzim')
+
+# factor and label
+factor(fact1, labels = c('Alpha', 'Beta', 'Gamma', 'Delta', 'Epsilon', 'Zeta'))
+```
+
+
+#### Exercise 10: Logical Indexing
+
+Filter out elements from a vector using a logical condition.
+
+
+```{r exe3, exercise=TRUE}
+
+```
+
+```{r exe3-hint}
+"Use logical conditions like `x > 5` inside square brackets."
+
+```
+
+```{r exe3-solution}
+x <- c(2, 4, 6, 8, 10, 12)
+
+x[x > 5] # keep anything greater than 5
+
+
+# Or
+x[3:6]  # ':' is an argument , it is to indicate range
+
+
+```
+
+#### Exercise 11: Sorting and NA Handling
+
+Sort a vector containing `NA` values and control the position of `NA`s in the output.
+
+```{r exe4, exercise=TRUE}
+
+```
+
+```{r exe4-hint}
+"Try setting `na.last = TRUE` and `na.last = FALSE` inside the `sort()` function."
+
+```
+
+```{r exe4_solution}
+y <- c(3, 7, NA, 1, 9, NA, 5)
+
+sort(y, na.last = TRUE)
+
+sort(y, na.last = FALSE) # bring to the first
+```
+#### Exercise 12: Ordered Factors
+
+Create and analyze an ordered factor.
+
+```{r exe5, exercise=TRUE}
+
+```
+
+```{r exe5-hint}
+"Use the `ordered = TRUE` argument to make it an ordered factor."
+
+```
+
+```{r exe5-solution}
+sizes <- c("small", "large", "medium", "small", "large")
+
+ordered_sizes <- factor(sizes, levels = c("small", "medium", "large"), ordered = TRUE)
+
+ordered_sizes
+
+summary(ordered_sizes) 
+```
+
+#### Exercise 13: Vector Mathematics
+
+Do arithmetic and statistical operations on two vectors `a` and `b`.
+You may use `+` and `*` and calculate `average` & `standard deviation` 
+```{r exe6, exercise=TRUE}
+
+```
+
+```{r exe6-hint}
+# Use `*` for element-wise multiplication, and explore `mean()` and `sd()` for statistics.
+
+```
+
+
+```{r exe6-solution}
+a <- c(2, 4, 6)
+b <- c(1, 3, 5)
+a + b  # addition
+mean(a * b) # average
+sd(b) # standard deviation
+```
+
+#### Exercise 14: Insert and Modify Elements
+
+Insert a value into a specific position in a vector and change an element.
+
+```{r exe7, exercise=TRUE}
+
+```
+
+```{r exe7-hint}
+# Use `append()` to insert elements and indexing (e.g., `z[1] <- 10`) to modify.
+
+```
+
+
+```{r exe7-solution}
+z <- c(1, 2, 4, 5)
+z <- append(z, 3, after = 2)
+z
+z[1] <- 10
+z
+```
+
+
+#### Exercise 15: Rounding and Difference
+
+Round values and find differences between successive numbers.
+
+```{r exe8, exercise=TRUE}
+
+```
+
+```{r exe8-hint-1}
+# Use `round(x, 2)` to round to 2 decimal places and `diff()` to calculate differences.
+
+```
+
+```{r exe8-hint-2}
+numbers <- c(3.14159, 2.71828, 1.61803)
+round(numbers, 2)
+diff(numbers)
+```
+
+#### Exercise 16: Summary of a Vector 
+
+Get a summary of descriptive statistics for a vector.
+
+```{r exe9, exercise=TRUE}
+
+```
+
+```{r exe9-hint}
+# The `summary()` function works on numeric and factor vectors.
+
+```
+
+```{r exe9-solution}
+data <- c(2, 4, 6, 8, 10)
+summary(data)
+```
+
+#### Exercise 17: Combining Everything
+
+Put several techniques together: remove `NA`s, calculate means, and summarize a factor.
+
+```{r exe10, exercise=TRUE}
+
+```
+
+```{r exe10-hint}
+# Use `na.omit()` to remove `NA`s and `summary(factor(...))` for factor counts.
+```
+```{r exe10-solution}
+mix <- c(5, 10, NA, 15, 20)
+mix <- na.omit(mix)
+mix
+mean(mix)
+summary(factor(c("apple", "banana", "apple", "orange")))
+```
+
+### Congratulations 🎉
+### ✅ Summary
+
+You've learn `vector` data structure of R programming, combining vectors, how to `index` elements, their `removal` or `substitution`, and how to `factorize`. 
+
+Next chapter ⤵️
+
+
+## 👉Data types & structures [W1 D3]
+In this chapter, you will learn different `types` of data and their `structures` in R and how to treat `NA` value. 
+
+
+### Previous overview
+You have learned basic data `types`. Common atomic data `types` in R are: 
+
+* **Numeric** – numbers with or without decimals (e.g., 3.14, 42) 
+* **Integer** – whole numbers (e.g., 5L, where L denotes an integer)
+* **Character** – text strings (e.g., "hello") 
+* **Logical** – boolean values (TRUE, FALSE) 
+* **Complex** – complex numbers (e.g., 1+2i)  
+
+**Now you will learn data `structures`, more specifically:** 
+
+* **data structures in R** & *example* of each data structure 
+* **exploring data** in R and
+* Handling **missing data (NA)**
+
+### 1. Data `structures` 
+Some important data structures:  
+
+- A. Vector
+- B. List
+- C. Data frame
+- D. Matrice or matrix
+- E. Array
+- F. Factor
+- G. Tibble
+
+<a href="https://github.com/abu85/datasets/blob/main/R_data_structures_ver_1_1.png?raw=true" target="_blank">
+  <img src="https://github.com/abu85/datasets/blob/main/R_data_structures_ver_1_1.png?raw=true" width="650" style="border-radius:8px;">
+</a>
+
+[Figure: Data structures **at a glance**](https://github.com/abu85/datasets/blob/main/R_data_structures_ver_1_1.png?raw=true)
+
+Now explore all structures (A-G) one by one
+
+#### A. `Vector` data structure
+
+Vector is `one dimensional` structure also known as ordered collection of `same data type`
+```{r str-1, exercise=TRUE}
+X <- c(1, 3, 5, 7, 8)
+
+# Printing those elements in console
+print(X)
+```
+
+
+#### B. `List` data structure 
+List is `one dimensional` structure too and can be composed of `all types` of data
+List: 
+The first attributes is a numeric vector containing the 'employee IDs' which is created using the 'c' command here
+
+```{r str-2, exercise=TRUE}
+empId <- c(1, 2, 3, 4)
+```
+
+The second attribute is the employee name  which is created using this line of code here which is the character vector 
+
+```{r str-3, exercise=TRUE}
+empName <- c("Kamal", "Jamil", "Shobur", "Khan")
+```
+The third attribute is the number of employees which is a single numeric variable.
+```{r str-4, exercise=TRUE}
+numberOfEmp <- 4
+```
+
+`list()` command: 
+We can combine all these three different data types into a list containing the details of employees which can be done using a `list()` command
+
+```{r str-5, exercise=TRUE}
+empId <- c(1, 2, 3, 4)                            # employee IDs
+empName <- c("Kamal", "Jamil", "Shobur", "Khan")  # employee names
+numberOfEmp <- 4                                  # number of the employees
+
+# make a list, combine all these three things:
+empList <-  list(empId, empName, numberOfEmp)     # list of the employees
+
+print(empList)
+```
+We see `empList` has three vectors within it with different data types. You call the each vector with `[[x]]` e.g., `empList[[1]]`, `empList[[2]]`
+, `empList[[3]]`
+
+ 
+
+* `Type` can be vector as `numeric`, `character` etc 
+* `lists` can be made from `types` 
+* there are more structures `data.frame`, `matrice`, `arrays` etc 
+
+#### C. `Data frame` data Structure 
+Data frame is **two dimensional** data structure. one dimension is called `column` another is `row`. each column should have same type of elements. different columns can have different data type.
+
+*Example*: Make a data frame with 'Height' value of three 'varieties' under different 'treatment' conditions
+
+```{r str-6, exercise=TRUE}
+# variety is a character vector
+variety<- c("Variety A", "Variety B")
+
+# treatment is a character vector
+treatment<-  c("T1", "T2")
+
+# plant height is a numeric vector
+height<- c(50, 45, 45, 40, 48, 46)
+```
+
+To create data frame use `data.frame()` command
+```{r str-7, exercise=TRUE}
+# variety is a character vector
+variety<- c("Variety A", "Variety B")
+
+# treatment is a character vector
+treatment<-  c("T1", "T2")
+
+# plant height is a numeric vector
+height<- c(50, 45, 45, 40, 48, 46)
+
+# combine as data frame
+data<- data.frame(variety, treatment, height)   # combine all vectors
+
+# print
+print(data)
+```
+Or
+
+alternative way to create a data frame at once
+```{r str-8, exercise=TRUE}
+data<- data.frame(variety= c("Variety A", "Variety B"),  
+                  treatment=  c("T1", "T2"),
+                  height= c(50, 45, 45, 40, 48, 46))
+print(data)
+```
+📌 **Remember the above 'r chunk'** to make demo or fake data. you will see this often in this tutorial.
+
+#### D. `Matrice` data Structure 
+*Two dimensional*, all elements are *same data type*.
+```{r str-9, exercise=TRUE}
+A <- matrix(
+  # Taking sequence of elements
+  c(1, 2, 3, 4, 5, 6, 7, 8, 9), 
+  
+  # No of rows and columns
+  nrow = 3, ncol = 3,  
+  
+  # By default matrices are 
+  # in column-wise order 
+  # So this parameter decides,
+  # how to arrange the matrix          
+  byrow = TRUE                             
+)
+
+print(A)
+```
+
+Or 
+```{r str-10, exercise=TRUE}
+A <- matrix(c(1,2,3,4,5,6,7,8,9),
+          nrow=3, ncol=3, byrow=TRUE)
+
+print(A)
+```
+
+#### E. `Arrays` data Structure
+**Three or more dimensional** structure, with same data type
+```{r str-11, exercise=TRUE}
+A <- array(
+  # Taking sequence of elements
+  c(1, 2, 3, 4, 5, 6, 7, 8),
+  
+  # Creating two rectangular matrices 
+  # each with two rows and two columns
+  dim = c(2, 2, 2)                        
+)
+
+print(A)
+```
+
+#### F. `Factor` data Structure 
+In R, a factor is a special data structure used to represent **categorical variables** (not continuous numeric). It stores both the values of the variable and the set of possible categories (called `levels`).
+
+🧠 Why use factors?
+They are memory-efficient for storing categorical data.
+They are essential for statistical modeling (e.g., in lm(), glm()).
+They ensure consistent ordering of categories.
+
+
+Creating factor using factor()
+```{r str-12, exercise=TRUE}
+fac = factor(c("Male", "Female", "Male",
+               "Male", "Female", "Male", "Female"))
+
+print(fac)
+```
+
+
+#### G. `Tibble` data Structure
+A tibble is essentially a data frame with *improved printing, subsetting, and type handling*. It behaves like a data frame but with enhancements. we use `tibble()` from tidyverse package.
+
+See the difference between 'tibble' and 'data frame'
+```{r str-13, exercise=TRUE}
+# you need 'tibble' package to do this job in RStudio
+# Create a tibble with three columns: name, age, and city
+my_data <- tibble(name = c("Sandeep", "Amit", "Aman"),
+                  age = c(25, 30, 35),
+                  city = c("Pune", "Jaipur", "Delhi"))
+
+# Print the tibble
+print(my_data)
+
+
+# now make a data frame with same data
+my_data <- data.frame(name = c("Sandeep", "Amit", "Aman"),
+                  age = c(25, 30, 35),
+                  city = c("Pune", "Jaipur", "Delhi"))
+
+# Print the tibble
+print(my_data)
+
+
+```
+
+<a href="https://github.com/abu85/datasets/blob/main/R_data_structures_ver_1_1.png?raw=true" target="_blank">
+  <img src="https://github.com/abu85/datasets/blob/main/R_data_structures_ver_1_1.png?raw=true" width="650" style="border-radius:8px;">
+</a>
+
+[Data structures **at a glance**](https://github.com/abu85/datasets/blob/main/R_data_structures_ver_1_1.png?raw=true)
+
+
+## 👉Exploring and navigating data in R [W2 D3]
+In this chapter you will learn how to look at the data and play with its components, how to treat na values and how to navigate through data.
+
+### 1. Data exploration
+```{r str-14, exercise=TRUE}
+new_data<- data.frame(
+  variety= c("Variety A", "Variety B", "Variety C", "Variety D", "Variety E", "Variety F"),
+  treatment=  c("T1", "T2", "T3"),
+  height= c(50, 45, 45, 40, 48, 46, 50, 45, 45.5, 40, 48, 46, 50, 45, 45, 40, 48, 46))             # assign three lists into a data frame with data.frame command
+new_data         # print the data
+```
+
+#### size of the dataset
+find number of the rows(observations) and columns (variables)
+```{r str-15, exercise=TRUE}
+new_data<- data.frame(
+  variety= c("Variety A", "Variety B", "Variety C", "Variety D", "Variety E", "Variety F"),
+  treatment=  c("T1", "T2", "T3"),
+  height= c(50, 45, 45, 40, 48, 46, 50, 45, 45.5, 40, 48, 46, 50, 45, 45, 40, 48, 46))             # data frame assignment
+
+nrow(new_data)   # number of the rows or observations
+
+ncol(new_data)   # number of the columns or variables
+
+dim(new_data)    # dimension (number of the rows and columns together)
+```
+
+#### content
+See first and last few rows or observations
+```{r str-16, exercise=TRUE}
+new_data<- data.frame(
+  variety= c("Variety A", "Variety B", "Variety C", "Variety D", "Variety E", "Variety F"),
+  treatment=  c("T1", "T2", "T3"),
+  height= c(50, 45, 45, 40, 48, 46, 50, 45, 45.5, 40, 48, 46, 50, 45, 45, 40, 48, 46))            # data frame assignment
+
+head(new_data)  # See first few rows or observations
+
+tail(new_data)  # See last few rows or observations
+```
+
+#### names
+Get or set the `names`, `row names` (variables), `column names`(observations) of an data or object
+```{r str-17, exercise=TRUE}
+new_data<- data.frame(
+  variety= c("Variety A", "Variety B", "Variety C", "Variety D", "Variety E", "Variety F"),
+  treatment=  c("T1", "T2", "T3"),
+  height= c(50, 45, 45, 40, 48, 46, 50, 45, 45.5, 40, 48, 46, 50, 45, 45, 40, 48, 46))                 # data frame assignment
+
+names(new_data)      # name of the columns
+
+colnames(new_data)   # name of the columns
+
+rownames(new_data)   # name of the rows
+```
+
+#### structure of dataset
+Compactly display the internal structure of an R object
+```{r str-18-1, exercise=TRUE}
+new_data<- data.frame(
+  variety= c("Variety A", "Variety B", "Variety C", "Variety D", "Variety E", "Variety F"),
+  treatment=  c("T1", "T2", "T3"),
+  height= c(50, 45, 45, 40, 48, 46, 50, 45, 45.5, 40, 48, 46, 50, 45, 45, 40, 48, 46))                 # data frame assignment
+
+
+str(new_data)        # structure of the data
+```
+
+
+#### summary of dataset
+Produce result summaries
+```{r str-18-2, exercise=TRUE}
+new_data<- data.frame(
+  variety= c("Variety A", "Variety B", "Variety C", "Variety D", "Variety E", "Variety F"),
+  treatment=  c("T1", "T2", "T3"),
+  height= c(50, 45, 45, 40, 48, 46, 50, 45, 45.5, 40, 48, 46, 50, 45, 45, 40, 48, 46))                 # data frame assignment
+
+summary(new_data)    # summarize each column
+```
+
+
+#### accessing specific column or rows
+```{r str-19, exercise=TRUE}
+new_data<- data.frame(
+  variety= c("Variety A", "Variety B", "Variety C", "Variety D", "Variety E", "Variety F"),
+  treatment=  c("T1", "T2", "T3"),
+  height= c(50, 45, 45, 40, 48, 46, 50, 45, 45.5, 40, 48, 46, 50, 45, 45, 40, 48, 46))
+
+new_data[1,2]        # row no. 1 column no. 2
+
+new_data[1,]         # row no. 1 
+
+new_data[,1]         # column no. 1
+
+new_data[1:5, 1:3]   # row no. 1 to 5 and column no. 1 to 3
+```
+
+accessing variables or columns by its name
+```{r str-20, exercise=TRUE}
+new_data<- data.frame(
+  variety= c("Variety A", "Variety B", "Variety C", "Variety D", "Variety E", "Variety F"),
+  treatment=  c("T1", "T2", "T3"),
+  height= c(50, 45, 45, 40, 48, 46, 50, 45, 45.5, 40, 48, 46, 50, 45, 45, 40, 48, 46))
+
+new_data$variety   # variety column
+
+new_data$treatment # treatment column
+
+new_data$height    # height column
+
+```
+#### changing the `column names` in a data frame 
+```{r str-21, exercise=TRUE}
+new_data<- data.frame(
+  variety= c("Variety A", "Variety B", "Variety C", "Variety D", "Variety E", "Variety F"),
+  treatment=  c("T1", "T2", "T3"),
+  height= c(50, 45, 45, 40, 48, 46, 50, 45, 45.5, 40, 48, 46, 50, 45, 45, 40, 48, 46))
+
+str(new_data)
+
+colnames(new_data)
+```
+
+try `View(new_data)`
+
+#### changing the `data types` of each columns
+```{r str-22, exercise=TRUE}
+new_data<- data.frame(
+  variety= c("Variety A", "Variety B", "Variety C", "Variety D", "Variety E", "Variety F"),
+  treatment=  c("T1", "T2", "T3"),
+  height= c(50, 45, 45, 40, 48, 46, 50, 45, 45.5, 40, 48, 46, 50, 45, 45, 40, 48, 46))
+
+str(new_data)
+
+# variety
+new_data$variety<- as.factor(new_data$variety)
+
+str(new_data)
+```
+
+#### Exercise: Try to change the `data types` of the following `columns`
+*copy them and execute within the R code box* 
+```
+# treatment
+new_data$treatment<- as.factor(new_data$treatment)
+
+str(new_data)
+
+# height
+new_data$height<- as.integer(new_data$height)
+
+str(new_data)
+```
+
+#### changing the `column name` in data frame 
+```{r str-23, exercise=TRUE}
+new_data<- data.frame(
+  variety= c("Variety A", "Variety B", "Variety C", "Variety D", "Variety E", "Variety F"),
+  treatment=  c("T1", "T2", "T3"),
+  height= c(50, 45, 45, 40, 48, 46, 50, 45, 45.5, 40, 48, 46, 50, 45, 45, 40, 48, 46))
+
+
+# existing column names
+colnames(new_data)
+
+colnames(new_data)<- c("Variety", "Nitrogen_treatment", "Plant_height")
+
+# new column names
+colnames(new_data)
+```
+
+
+### 2. Missing value `NA`
+<a href="https://education.RStudio.com/blog/2020/05/learnr-for-remote/naniar.jpg" target="_blank">
+  <img src="https://education.RStudio.com/blog/2020/05/learnr-for-remote/naniar.jpg" width="500" style="border-radius:8px;">
+</a>
+
+#### Let's create a data frame with some `NA` values
+```{r tidyr-na-removal-0, message=FALSE, warning=FALSE, echo=FALSE}
+# Create 'df' data frame with some NA values
+df <- data.frame(
+  name = c("Alice", "Bob", NA, "David"),
+  age = c(25, NA, 30, 22),
+  score = c(90, 85, 88, NA)
+  )
+
+# View the original data
+print("Original Data:")
+print(df)
+```
+ 
+```{r tidyr-na-removal-1, exercise=TRUE, message=FALSE, warning=FALSE}
+# Create 'df' data frame with some NA values
+df <- data.frame(
+  name = c("Alice", "Bob", NA, "David"),
+  age = c(25, NA, 30, 22),
+  score = c(90, 85, 88, NA)
+  )
+
+# View the original data
+print("Original Data:")
+print(df)
+```
+
+#### Remove `rows` with any `NA` values
+
+```{r tidyr-na-removal-2, exercise=TRUE, message=FALSE, warning=FALSE}
+# Create 'df' data frame with some NA values
+df <- data.frame(
+  name = c("Alice", "Bob", NA, "David"),
+  age = c(25, NA, 30, 22),
+  score = c(90, 85, 88, NA)
+)
+
+# Remove rows with any NA values
+df_clean <- drop_na(df)
+
+# View the cleaned data
+print("Data after removing rows with any NA:")
+print(df_clean)
+```
+
+#### remove NA only from specific `columns` (e.g., age and score)
+```{r tidyr-na-removal-4, exercise=TRUE, message=FALSE, warning=FALSE}
+# Create 'df' data frame with some NA values
+df <- data.frame(
+  name = c("Alice", "Bob", NA, "David"),
+  age = c(25, NA, 30, 22),
+  score = c(90, 85, 88, NA)
+)
+
+# remove NA only from specific columns (e.g., age and score) and save as 'df_partial_clean'
+df_partial_clean <- df %>%  # pass df data through pipe %>% 
+  drop_na(age, score)
+
+# View the partially cleaned data
+print("Data after removing rows with NA in age or score:")
+print(df_partial_clean)
+```
+
+📝 **Explanation**:
+
+- `data.frame()` is used to create a tidy data frame.
+- `%>%`: The pipe operator, passing `df` into the next function `drop_na()`.
+💡[**What is pipe`%>%` or `|>` and How pipe works?**](https://faculty.washington.edu/otoomet/machinelearning-R/pipes-dplyr.html) 
+- `drop_na()` removes rows with **any** missing values.
+- `drop_na(column1, column2)` removes rows with missing values **only in specified columns**.
+
+### 🧠 **Exercise**: Remove NA only from specific `columns` (e.g., temperature and humidity)
+Create a new data frame from the `codes box` bellow and remove `NA` only from specific `columns` (e.g., temperature and humidity)
+```
+# Create a new data frame
+newdf <- data.frame(
+ city = c("Stockholm", "Uppsala", "Gothenburg", NA),
+ temperature = c(18, NA, 21, 19),
+ humidity = c(55, 60, NA, 70)
+)
+```
+💡**Hints**: you may copy 'codes' (see above) and paste here ⤵️ and run the rest as like as the last *explanation* or *codes* 
+```{r exercise-rm-na, exercise=TRUE}
+
+```
+
+```{r exercise-rm-na-hint}
+# Create a new data frame
+newdf <- data.frame(
+ city = c("Stockholm", "Uppsala", "Gothenburg", NA),
+ temperature = c(18, NA, 21, 19),
+ humidity = c(55, 60, NA, 70)
+)
+
+# remove NA only from specific columns (e.g., temperature and humidity) and save as 'df_partial_clean'
+df_partial_clean <- newdf %>%    # pass the newdf through pipe %>% 
+  drop_na(temperature, humidity)
+
+# View the partially cleaned data
+print("Data after removing rows with NA in temperature or humidity:")
+print(df_partial_clean)
+
+```
+
+💡**Extra**: try followings:
+fill(): Fills missing values using the next or previous value.
+replace_na(): Replaces NA values with a specified value.
+
+
+### ✅ Summary:
+- Structures: `vector`, `list`, `matrice`, `data.frame`, `arrays`
+- `vector` as numeric, character, intiger type etc
+- `lists` can be made from vectors
+- `Na` can be removed from `rows` 
+- Na can be removed from certain `columns`
+- Using the `pipe` operator (`%>%`) to chain multiple operations.
+
+
+Next chapter ⤵️
+
+## 👉Control structures and functions in R [W2 D1]
+
+In this chapter you will explore control structures (if-else, loops) and functions in R. You'll run code examples and complete exercises to practice these concepts.
+
+#### Control Structures
+Control structures help you control the flow of your R programs.
+
+If-Else Statements
+If-else statements let you make decisions in your code:
+
+```{r con-str-1, exercise=TRUE}
+# Generate a random number between 0 and 10
+x <- runif(1, 0, 10)  
+
+if(x > 3) {
+  y <- 10
+} else {
+  y <- 0
+}
+y
+```
+
+#####  📝 Explanation:
+
+runif(1, 0, 10) generates one random number between 0-10
+
+If x > 3, y gets 10
+
+Otherwise, y gets 0
+
+#### **Exercise**
+
+Run the code several times to see different outcomes
+
+Change the condition to x > 5
+
+```{r con-str-1-ex, exercise=TRUE}
+
+
+
+
+
+```
+
+### For Loops
+For loops repeat actions for each element in a sequence:
+
+```{r con-str-2, exercise=TRUE}
+# Basic loop printing numbers 1-10
+for(i in 1:10) {
+  print(i)
+}
+```
+
+you can also remove the curly braces for one line code
+```{r con-str-2-1, exercise=TRUE}
+for(i in 1:10) print(i)
+```
+
+##### 📝 Explanation: 
+`i` takes values 1 through 10
+
+
+```{r con-str-2-2, exercise=TRUE}
+
+x <- c("a", "b", "c", "d")
+
+for(i in 1:4){print(x[i])
+  }
+
+for(i in 1:3){print(x[i])
+}
+
+```
+
+Loop through a 'character' vector
+
+```{r con-str-3, exercise=TRUE}
+fruits <- c("apple", "banana", "cherry")
+for(fruit in fruits) {
+  print(toupper(fruit))
+}
+```
+
+#####  📝 Explanation:
+
+Processes each element in fruits vector
+
+`toupper()` converts text to uppercase
+
+#### **Exercise**:
+
+Modify the second loop to print fruit names in lowercase (hint: tolower())
+
+Create a loop that prints even numbers between 2-20
+
+
+```{r con-str-3-ex, exercise=TRUE}
+
+
+
+
+
+```
+
+
+### Vectorization vs Loops
+
+R often works better with vectorized operations:
+
+Say, we want to add 1 to every element of a vector:
+
+```{r con-str-4, exercise=TRUE}
+# Using a loop
+vec <- 1:5
+
+for (i in seq_along(vec)) {
+  vec[i] <- vec[i] + 1
+}
+vec
+```
+
+The above can be achieved in R by means of **vectorization**.  
+**Vectorization** is an element-wise operation where you perform task/operation on entire vectors/matrices/data.frames.
+
+
+```{r con-str-4-1, exercise=TRUE}
+# Vectorized alternative
+vec <- 1:5
+
+vec + 1
+```
+
+
+**Key Insight**:
+
+Vectorized operations are simpler and faster in R
+
+Use loops when you need complex iterative logic
+
+### While Loops
+While loops repeat until a condition is met:
+
+
+```{r con-str-5-1, exercise=TRUE}
+count<-0    #The variable count is initialized to 0. This will be our loop counter, starting from 0
+while (count<10) {
+  print(count)
+  count<- count+1
+  }
+```
+📝 **Explanation**:
+
+- A variable named count is created and set to `0`.
+- This variable will be used to control how many times the loop runs.
+- The loop will continue as long as count is less than `10`.
+- Once count reaches `10`, the condition becomes FALSE, and the loop stops.
+- `print(count)` displays the current value of count.
+- `count <- count + 1` increases the value of count by 1 after each iteration.
+
+Another example:
+```{r con-str-5-2, exercise=TRUE}
+x <- 1
+while (x < 5) {
+  cat(x, " ... ")
+  x <- x + 1
+}
+```
+explain the above `while loop `to yourselves
+
+
+
+'while loop' for more than one condition
+
+```{r con-str-5-3, exercise=TRUE}
+z<- 5
+set.seed(1)
+while(z>=3 && z<=10){
+  coin<- rbinom(1,1,0.5)
+  if(coin==1){
+    z<-z+1
+  }else{z<- z-1
+  }
+}
+
+print(z)
+```
+Conditions are always evaluated from left to right.
+For example, in the above code, if z were less than 3, the second test would not have been evaluated.
+
+Optional
+```{r con-str-5-5, exercise=TRUE}
+# Count up while condition holds
+count <- 0
+while(count < 5) {
+  print(count)
+  count <- count + 1
+}
+
+# Simulate a coin flip game
+z <- 5
+set.seed(123)
+while(z >= 3 && z <= 10) {
+  coin <- rbinom(1, 1, 0.5)  # 50% chance of 0 or 1
+  if(coin == 1) {
+    z <- z + 1
+  } else {
+    z <- z - 1
+  }
+}
+z
+```
+
+📝 **Explanation**:
+
+First loop: Runs while count < 5
+
+Second loop: Simulates a random walk until z exits 3-10 range
+
+rbinom(1,1,0.5) simulates coin flips (1=heads, 0=tails)
+
+
+**Exercise**:
+
+Change the initial value of z to 6
+
+Modify the coin probability to 0.7 (biased coin)
+
+```{r con-str-5-ex, exercise=TRUE}
+
+
+
+
+
+```
+
+### Functions
+Functions let you package code for reuse.
+
+### Built-in Functions (type 1)
+
+##### example from vector data type
+```{r func1, exercise=TRUE}
+v <- c(1, 3, 0.2, 1.5, 1.7) # 'v' is a vector here
+
+print(v)                  # Print the contents of vector 'v'
+v                         # print the contents of vector 'v'
+```
+
+
+```{r func1-1, exercise=TRUE, exercise.lines=9}
+v <- c(1, 3, 0.2, 1.5, 1.7) # 'v' is a vector here
+
+mean(v)                   # Calculate the average (mean) of the values in 'v'
+median(v)                 # Find the middle value (median) of 'v'
+max(v)                    # Get the maximum value in 'v'
+min(v)                    # Get the minimum value in 'v'
+sum(v)                    # Calculate the total sum of all elements in 'v'
+abs(v)                    # Return the absolute values of each element in 'v'
+```
+
+
+```{r func1-2, exercise=TRUE, exercise.lines=8}
+v <- c(1, 3, 0.2, 1.5, 1.7) # 'v' is a vector here
+
+ncol(v)                   # Number of columns (returns NULL for a vector)
+nrow(v)                   # Number of rows (returns NULL for a vector)
+length(v)                 # Count the number of elements in 'v'
+range(v)                  # Return the minimum and maximum values in 'v'
+
+str(v)                    # Display the structure of 'v' (type and length)
+```
+
+
+```{r func1-3, exercise=TRUE}
+v <- c(1, 3, 0.2, 1.5, 1.7) # 'v' is a vector here
+
+sort(v, decreasing=TRUE)  # Sort the elements of 'v' in descending order
+sort(v, decreasing=FALSE) # Sort the elements of 'v' in ascending order
+```
+
+##### example on data frame
+demo data:
+```{r func2, echo=FALSE}
+#make a data frame first
+data<-data.frame(variety=c("A", "B", "C"),
+                 treatment=c("T1", "T2", "T3"),
+                 height=c(50,60, 70, 55, 70,80, 40, 50, 83),
+                 yield=c(4,5,6,3.8,6.2,7.3,3.5,4,7))
+data
+```
+
+make it and execute built-in 'functions' on the data
+```{r func3, exercise=TRUE, exercise.lines=26}
+#make a data frame first
+data <- data.frame(                      # Create a data frame with 4 columns
+  variety = c("A", "B", "C"),            # Categorical variable for variety
+  treatment = c("T1", "T2", "T3"),       # Categorical variable for treatment
+  height = c(50, 60, 70, 55, 70, 80, 40, 50, 83),  # Numeric values for plant height
+  yield = c(4, 5, 6, 3.8, 6.2, 7.3, 3.5, 4, 7)     # Numeric values for yield
+)
+
+print(data)               # Print the data frame to the console
+View(data)                # Open the data frame in a spreadsheet-style viewer (RStudio only)
+str(data)                 # Show the structure of the data frame (column types and preview)
+
+mean(data$yield)          # Calculate the mean (average) of the 'yield' column
+mean(data$height)         # Calculate the mean of the 'height' column
+median(data$height)       # Find the median (middle value) of the 'height' column
+max(data$height)          # Get the maximum value in the 'height' column
+min(data$height)          # Get the minimum value in the 'height' column
+sum(data$height)          # Sum all values in the 'height' column
+length(data$height)       # Count the number of elements in the 'height' column
+range(data$height)        # Return the minimum and maximum values in 'height'
+abs(data$height)          # Return the absolute values of each element in 'height'
+str(data$height)          # Show the structure of the 'height' column (numeric vector)
+
+ncol(data)                # Return the number of columns in the data frame
+nrow(data)                # Return the number of rows in the data frame
+
+```
+
+
+
+### Package 📦 Functions (type 2)
+R packages extend functionality. 
+
+But first look at a demo data and its structure:
+```{r func4, include=FALSE}
+#make a data frame first
+data<-data.frame(variety=c("A", "B", "C"),
+                 treatment=c("T1", "T2", "T3"),
+                 height=c(50,60, 70, 55, 70,80, 40, 50, 83),
+                 yield=c(4,5,6,3.8,6.2,7.3,3.5,4,7))
+data
+```
+
+Structure of the data: 
+```{r func5, include=FALSE}
+str(data)
+```
+
+##### How to use different functions belong to packages in R
+
+Navigation of different functions under `ggplot2` package 📦
+
+```{r func6, exercise=TRUE, exercise.lines=20}
+data <- data.frame(                      # Create a data frame with 4 columns
+  variety = c("A", "B", "C"),            # Categorical variable for variety
+  treatment = c("T1", "T2", "T3"),       # Categorical variable for treatment
+  height = c(50, 60, 70, 55, 70, 80, 40, 50, 83),  # Numeric values for plant height
+  yield = c(4, 5, 6, 3.8, 6.2, 7.3, 3.5, 4, 7)     # Numeric values for yield
+)
+
+
+# Install package (only need once) for data visualization
+# install.packages("ggplot2")
+
+library(ggplot2)                                              # Load the ggplot2 package for data visualization
+
+# Create a boxplot of plant height by variety
+ggplot(data, aes(x = variety, y = height, fill = variety)) +  # Initialize the plot with data and aesthetics
+  geom_boxplot() +                                            # Add a boxplot layer to show distribution
+  labs(title = "Plant Height by Variety",                     # Add a title and axis labels
+       x = "Variety", 
+       y = "Height (cm)") +
+  theme_classic()                                             # Apply a clean, minimal theme to the plot
+
+```
+
+
+#### User-Defined Functions (type 3)
+Create your own functions with `function()`:
+
+```{r func7, exercise=TRUE}
+# Calculate circle area
+circle_area <- function(r = 1) {
+  pi * r^2
+}
+circle_area(3)  # Radius 3
+```
+
+
+```{r func8, exercise=TRUE}
+# Calculate mean of two numbers
+mean_two <- function(a, b = 10) {
+  (a + b)/2
+}
+mean_two(5, 15)
+mean_two(20)    # Uses default b=10
+```
+
+
+```{r func9, exercise=TRUE}
+# Return multiple values
+stats <- function(x, y) {
+  c(mean = (x+y)/2, 
+    sum = x+y)
+}
+stats(10, 20)
+```
+
+##### Key Points:
+
+function() defines new functions
+
+Arguments can have default values (like b = 10)
+
+Use return() or final expression to output results
+
+#### 🧠 **Exercise** `function`
+
+Create a function rectangle_area(length, width) that calculates area
+
+Modify stats() to include product (x*y)
+
+```{r func10, exercise=TRUE}
+
+```
+
+##### Well done 🎉
+
+### ✅ Summary
+
+You've learned:
+
+* Conditional logic with if-else
+
+* Iteration with for and while loops
+
+* Creating and using functions
+
+* Basic vectorization concepts
+
+* Using package functions
+
+
+
+Next chapter ⤵️
+
+## 👉Read and write data in R [W2 D2]
+
+In this chapter, you will learn and apply *how to export(write)* data or results table in R and *how to import(read) data*. 
+
+
+```{r ins-lib, include=FALSE}
+# Install necessary packages if not already installed
+if (!require("readr")) install.packages("readr", dependencies=TRUE)
+if (!require("readxl")) install.packages("readxl", dependencies=TRUE)
+if (!require("writexl")) install.packages("writexl", dependencies=TRUE)
+if (!require("openxlsx")) install.packages("openxlsx", dependencies=TRUE)
+if (!require("rio")) install.packages("rio", dependencies=TRUE)
+# Extra
+if (!require("officer")) install.packages("officer", dependencies=TRUE)
+if (!require("magrittr")) install.packages("magrittr", dependencies=TRUE)
+if (!require("dplyr")) install.packages("dplyr", dependencies=TRUE)
+```
+
+when you practice this chapter in `RStudio` install and load these packages
+
+```
+# Load the necessary libraries
+library(readr)
+library(readxl)
+library(writexl)
+library(openxlsx)
+library(rio)
+# Extra
+library(officer)
+library(magrittr)
+library(dplyr)
+```
+
+### Write or export
+Let's creating a 'sample data'
+```{r data1, exercise=TRUE}
+sample_data <- data.frame(
+  ID = 1:10,
+  Name = c("John", "Jane", "Alice", "Bob", "Carol", "Dave", "Eve", "Frank", "Grace", "Hank"),
+  Age = c(28, 34, 23, 45, 32, 36, 29, 41, 30, 37),
+  Score = c(85, 90, 78, 88, 92, 76, 81, 89, 84, 91)
+)
+
+head(sample_data)
+```
+
+
+Exporting sample data to different file formats (csv, excel)
+
+```{r data1_1, exercise=TRUE}
+sample_data <- data.frame(
+  ID = 1:10,
+  Name = c("John", "Jane", "Alice", "Bob", "Carol", "Dave", "Eve", "Frank", "Grace", "Hank"),
+  Age = c(28, 34, 23, 45, 32, 36, 29, 41, 30, 37),
+  Score = c(85, 90, 78, 88, 92, 76, 81, 89, 84, 91)
+)
+
+
+# Export to csv using 'base' R
+write.csv(sample_data, "sample_data_base.csv", row.names = FALSE)
+
+# Export to csv using 'readr' package
+write_csv(sample_data, "sample_data_readr.csv")
+
+# Export to Excel using 'writexl' package
+write_xlsx(sample_data, "sample_data_writexl.xlsx")
+
+# Export to Excel (.xlsx) using 'openxlsx' package
+write.xlsx(sample_data, "sample_data_openxlsx.xlsx")
+
+# Now See if the files are created in working directory
+
+list.files()  # List all files and folders in the current directory
+
+dir()         # List all files and folders in the current directory
+
+
+```
+
+```{r write-1, exercise=TRUE}
+sample_data <- data.frame(
+  ID = 1:10,
+  Name = c("John", "Jane", "Alice", "Bob", "Carol", "Dave", "Eve", "Frank", "Grace", "Hank"),
+  Age = c(28, 34, 23, 45, 32, 36, 29, 41, 30, 37),
+  Score = c(85, 90, 78, 88, 92, 76, 81, 89, 84, 91)
+)
+
+# Export to various formats using rio
+export(sample_data, "sample_data_rio.csv")
+export(sample_data, "sample_data_rio.xlsx")
+export(sample_data, "sample_data_rio.json")
+export(sample_data, "sample_data_rio.tsv")
+# export(sample_data, "sample_data_rio.fcs")
+```
+
+### Reading or importing or loading data
+**Examples**:
+Importing data from the created files
+
+Import from `csv` file using `readr`package with `read_csv()`
+```{r read-1, exercise=TRUE}
+sample_data <- data.frame(
+  ID = 1:10,
+  Name = c("John", "Jane", "Alice", "Bob", "Carol", "Dave", "Eve", "Frank", "Grace", "Hank"),
+  Age = c(28, 34, 23, 45, 32, 36, 29, 41, 30, 37),
+  Score = c(85, 90, 78, 88, 92, 76, 81, 89, 84, 91)
+)   # a data frame
+
+# export data in the instance first then read
+# export as csv using readr package, with write_csv() function
+write_csv(sample_data, "sample_data_readr.csv")
+
+# now read the csv
+data_csv_readr <- readr::read_csv("sample_data_readr.csv")
+```
+
+Import directly from **URL** with `read_csv()` 
+```{r read-2, exercise=TRUE}
+students <- read_csv("https://pos.it/r4ds-students-csv")
+head(students)
+```
+
+*Bonus*: If you have 'N/A' not `NA` in the data, how will you consider them as `NA` 
+```{r read-3, exercise=TRUE}
+studentsNA <- read_csv("https://pos.it/r4ds-students-csv", na = c("N/A", ""))
+
+head(studentsNA)
+```
+
+Import `.txt` file directly from URL with `read.table()`
+```{r import-1, exercise=TRUE}
+Forest <- read.table(url("https://raw.githubusercontent.com/abu85/datasets/refs/heads/main/Forest.txt"), header = TRUE)  # load the data from website (url)
+head(Forest)
+```
+
+#### Try the following at RStudio
+
+```{r import-2, exercise=TRUE}
+# Import from CSV using base R
+data_csv_base <- read.csv("sample_data_base.csv")
+
+# Import from Excel using readxl
+data_excel_readxl <- read_excel("sample_data_writexl.xlsx", sheet = "Sheet1")
+
+# Import from Excel using openxlsx
+data_excel_openxlsx <- read.xlsx("sample_data_openxlsx.xlsx", sheet = 1)
+
+# Import from various formats using rio pack
+data_rio_csv <- import("sample_data_rio.csv")
+data_rio_excel <- import("sample_data_rio.xlsx")
+data_rio_json <- import("sample_data_rio.json")
+data_rio_tsv <- import("sample_data_rio.tsv")
+
+# Example of performing a simple analysis
+# Calculate summary statistics of a data frame
+summary_stats <- summary(sample_data)
+
+# Print summary statistics
+print(summary_stats)
+
+# Exporting the summary statistics to a CSV file
+write.csv(as.data.frame(summary_stats), "summary_stats.csv", row.names = FALSE)
+
+# Exporting the summary statistics to an Excel file
+write.xlsx(as.data.frame(summary_stats), "summary_stats.xlsx")
+
+# Exporting the summary statistics to a text file
+write.table(as.data.frame(summary_stats), "summary_stats.txt", row.names = FALSE, quote = FALSE)
+
+# Extra
+# Exporting the summary statistics to a Word document
+# Create a new Word document
+doc <- read_docx()
+
+# Add the summary statistics table to the Word document
+doc <- body_add_table(doc, value = as.data.frame(summary_stats), style = "table_template")
+
+# Save the Word document
+print(doc, target = "summary_stats.docx")
+```
+🚫🔸**Note on Error**: files are not saved in the instance, need to save or export them first 
+
+💡*include these lines in the beginning of the chunk or code box* and *run* the codes
+
+```
+sample_data <- data.frame(
+  ID = 1:10,
+  Name = c("John", "Jane", "Alice", "Bob", "Carol", "Dave", "Eve", "Frank", "Grace", "Hank"),
+  Age = c(28, 34, 23, 45, 32, 36, 29, 41, 30, 37),
+  Score = c(85, 90, 78, 88, 92, 76, 81, 89, 84, 91)
+)
+
+
+# Export to csv using 'base' R
+write.csv(sample_data, "sample_data_base.csv", row.names = FALSE)
+
+# Export to csv using 'readr' package
+write_csv(sample_data, "sample_data_readr.csv")
+
+# Export to Excel using 'writexl' package
+write_xlsx(sample_data, "sample_data_writexl.xlsx")
+
+# Export to Excel (.xlsx) using 'openxlsx' package
+write.xlsx(sample_data, "sample_data_openxlsx.xlsx")
+```
+
+#### **Extra**
+#### Try the following at RStudio
+```{r import-3, exercise=TRUE}
+###For FCS (Flow Cytometry Standard) file is a file format used to store data generated by flow cytometry experiments. 
+
+# Install flowCore from Bioconductor
+# BiocManager::install("flowCore")
+
+# Load the necessary library
+library(flowCore)
+
+# Creating sample data with only numerical columns
+sample_data <- data.frame(
+  ID = 1:10,
+  Age = c(28, 34, 23, 45, 32, 36, 29, 41, 30, 37),
+  Score = c(85, 90, 78, 88, 92, 76, 81, 89, 84, 91)
+)
+
+# Convert the data frame to a flowFrame object
+flow_data <- flowFrame(exprs = as.matrix(sample_data))
+
+# Save the flowFrame object as an FCS file
+write.FCS(flow_data, filename = "sample_data.fcs")
+
+
+# Import the FCS file
+fcs_data <- read.FCS("sample_data.fcs", transformation = FALSE)
+
+# Display the imported data
+fcs_data 
+
+
+#Our first data weren’t FCS format. Since FCS format is generally used for numerical data. I just modified the data frame and then saved it.
+```
+
+
+## 👉How to look at a data set? [W2 D3]
+This chapter is almost a tiny version of the previous chapter named **Exploring and navigating data in R**
+
+### Load Dataset
+
+We need a `data` set to work on. 
+We can either use a *built-in data* or upload *our own data* in RStudio environment. 
+
+(You have learned how to upload a data set or `excel/csv/tsv/txt` sheet in R from an earlier class **Write and Read in R**)
+
+Here we attached a built-in `storms` data from `dplyr` package
+```{r exp0, exercise=TRUE}
+# attach the data
+data(storms, package = "dplyr")
+```
+
+to see first couple of lines
+```{r exp01, exercise=TRUE}
+# use of head() function
+head(storms)
+```
+
+to see last couple of lines
+```{r exp02, exercise=TRUE}
+# use of tail() function
+tail(storms)
+```
+
+to know more about the data or function
+(it may pop up the results in a new window)
+```{r exp03, exercise=TRUE}
+# use of `?` or search 
+?storms
+```
+
+to know structure of the data
+(e.g. is data `data.frame` format? 
+(e.g. are columns `chr`or `num` or `int` or `factor` ?!)
+```{r exp4_1, exercise=TRUE}
+# use of str()
+str(storms) 
+```
+we may try `glimpse()` too instead of `str()`
+
+to open entire `storms` data
+```{r exp_5, exercise=TRUE}
+# use of View()
+view(storms)
+
+```
+
+🧠 Extra exercise: You can try `dim()` and `length()` functions too to see how many `variables` and `observations` you have in the dataset
+
+
+Great! Now you just had quick look around storms data, you just learned how to have a *at glance* look around a data before starting data wrangling or transformation or analysis or future steps
+
+
+Next chapter ⤵️
+
+## 👉Tidy up data (tidyr) [W3 D3]
+In this chapter you will learn how to organize data, specially `columns`(variables), `rows`(observations), `cells`(values) with the following tidyr functions:
+
+❑ `pivot_longer()`
+
+❑ `pivot_wider()`
+
+❑ `separate()`
+
+❑ `unite()`
+
+You know what is tidy data already from the lecture. 
+There are **three rules** that all *Tidy Data* must follow:
+
+- 1.Each variable gets its own column.
+- 2.Each observation gets its own row.
+- 3.Each value gets its own cell.
+
+So, what do we do if the data breaks one (or more!) rule of tidy data?
+Well, we bring it back into compliance!
+
+Lets see an **untidy** data name `cases`
+
+### pivot_longer()
+`pivot_longer()` function (from the tidyr📦) is used to **reshape data from wide format to long format**.
+
+Let's load 📥 and view the `cases` data and apply `pivot_longer()` function
+```{r, warning=FALSE, message=FALSE, echo=TRUE}
+library(readr) # readr package is needed to load a csv file
+cases <- read_csv("https://github.com/rstudio/EDAWR/blob/master/data-raw/cases.csv?raw=true")    # load the data from csv url file 
+cases          # print cases
+```
+
+You see that `cases` has four `columns` or `variables`: *country* , *`2011`* , *`2012`* and *`2013`*. 
+
+Now if we look carefully at the `cases` data we see that it is not a tidy data based on *tidy data rules* as we discussed before. That means we can still assign some *column names* to a new `column` or `variable`, then it become a tidy data. 
+How can we do that in R ? We use `pivot_longer()` function from *tidyr*📦 package to do that
+
+Run the following chunk
+```{r cases, exercise=TRUE, exercise.lines=9, warning=FALSE, message=FALSE}
+# library(tidyr)
+# library(dplyr)
+
+cases <- read_csv("https://github.com/rstudio/EDAWR/blob/master/data-raw/cases.csv?raw=true")    # load the data from csv url file 
+
+cases %>%                 # pass data through pipe (%>%), see details bellow 
+  pivot_longer(           # use pivot_longer function 
+  cols = c(2:4),          # names or numeric indexes of columns to collapse
+  names_to = "year",      # name of the new key column (a character string) : 
+  values_to = "n")        # name of the new value column (a character string)
+```
+
+🔧 **Explanation of Arguments**: 
+
+- `%>%`: The pipe operator, passing `cases` into the next function `pivot_longer()`.
+💡[What is pipe`%>%` or `|>` and How pipe works?](https://faculty.washington.edu/otoomet/machinelearning-R/pipes-dplyr.html) 
+- `pivot_longer()`: Reshapes the data.
+- `names_to` = "year": The column names (2011, 2012, 2013) become values in a new column called "year".
+- `values_to` = "n": The values under those columns become values in a new column called "n".
+- `cols` = 2:4: Specifies which columns to pivot (columns 2 to 4 in this case).
+
+
+#### Now your turn > >
+
+#### Make a demo data
+Let's make a demo *gene* 🧬 data named `wide_data` by executing the following r 'code block'
+```{r tex1_1, exercise=TRUE, exercise.lines=6}
+wide_data<- data.frame(
+  gene=c("gene1", "gene2", "gene3"),
+  treatment1=c(2,1,3),
+  treatment2=c(2,1,5),
+  ct=c(4,1,5))
+wide_data
+```
+
+You see that `wide_data` has three `columns` or variables: *treatment1* , *treatment2* and *ct*. 
+
+Now if we look carefully at the `wide_data` we see that it is not a tidy data based on tidy data rules. Because We can still assign all column names to a new `column` or `variable` named *condition* and put all the `values` in new column named *expression*, then it may fills the tidy data conditions. How? We use `pivot_longer()` function to do that.
+
+#### Exercise 18.1: `pivot_longer`
+```{r pvotex, exercise=TRUE, exercise.lines=12}
+
+```
+
+```{r pvotex-hint-1, hint=TRUE}
+"Hint 1: copy the following codes: change the data (cases to wider_data), 
+use `pivot_longer()` function, change the arguments according to this wider_data set, 
+assign everything to longer_data object, then `print` the `longer_data`object "
+
+cases %>%                 # pass data through pipe (%>%) 
+  pivot_longer(           # using pivot_longer function 
+  cols = c(2:4),          # names or numeric indexes of columns to collapse
+  names_to = "year",      # name of the new key column (a character string) : 
+  values_to = "n")        # name of the new value column (a character string)
+
+"Hint 2: assign targeted column names to a new `column` or `variable` named 'condition' 
+and put all the `values` in another new column named 'expression'"
+
+```
+
+```{r pvotex-hint-2, hint=TRUE}
+wide_data<- data.frame(
+  gene=c("gene1", "gene2", "gene3"),
+  treatment1=c(2,1,3),
+  treatment2=c(2,1,5),
+  ct=c(4,1,5))
+
+longer_data <- wide_data %>% pivot_longer(
+  cols = c(treatment1, treatment2, ct),     # we do not use all columns but last three only
+  names_to = "condition",
+  values_to = "expression")
+
+longer_data
+```
+
+
+💡**Instructor notes**: Keep all your questions ready if do not understand or have query. And ask when you see an **instructor** during the exercise time.
+
+
+#### 📥`Stoms` data: 
+You will do some practice on `storms` data set based on what you have just learned from the previous chapter: **how to look at a data** or lecture and examples. 
+
+Load📥 and look at the few lines of the storms data set and it's `variables` and `columns` (names to pressure):
+```{r tex1.0}
+head(dplyr::storms)
+```
+
+#### Extra Exercise 18.2: Use `pivot_longer` to reshape the dataset
+
+combine 'wind' and 'pressure' columns (variables) and make two new columns 'Measurement' and 'Value'.
+
+
+```{r tex1, exercise=TRUE, exercise.lines=10}
+
+```
+
+```{r tex1-hint, hint=TRUE}
+"Hint: 
+Use pivot_longer() function to combine 'wind' and 'pressure' columns
+from storms data. You may use pipe %>% too "
+```
+
+```{r tex1-solution}
+# use of pivot_longer() function
+long_storms <- storms %>%    # pipe %>% ?, see bellow
+  pivot_longer(cols = c("wind", "pressure"),
+               names_to = "Measurement",
+               values_to = "Value")
+head(long_storms)
+```
+💡scroll right to see the changes >>
+
+🧠 Think and reflect yourselves on what happened when you run the avobe codes and how?
+
+💡[What is pipe`%>%` or `|>` and How pipe works?](https://faculty.washington.edu/otoomet/machinelearning-R/pipes-dplyr.html) 
+
+**Now we will do the opposite,  Changer`longer to wider` data formats**
+
+### pivot_wider()
+
+`pivot_wider()` function (from the tidyr📦) is used to **reshape data from long format to wider format**.
+
+Let's load and view the `pollution` data
+```{r, warning=FALSE, message=FALSE, echo=TRUE}
+library(readr) # readr package is needed to load a csv file
+pollution <- read_csv("https://github.com/rstudio/EDAWR/blob/master/data-raw/pollution.csv?raw=true")    # load the data from csv url file 
+pollution          # print pollution
+```
+
+You see that `pollution` has three `columns` or `variables`: *city* , *size* and *amount*. 
+
+Now if we look carefully at the `pollution` data we see that it is not a tidy data based on *tidy data rules* as we discussed before. That means we can still assign some *values* to a new `column` or `variable`, then it become a tidy data. 
+How can we do that in R ? We apply `pivot_wider()` function
+
+Run the following chunk
+```{r polution, exercise=TRUE, exercise.lines=9, warning=FALSE, message=FALSE}
+# library(tidyr)
+# library(dplyr)
+
+pollution <- read_csv("https://github.com/rstudio/EDAWR/blob/master/data-raw/pollution.csv?raw=true")    # load the data from csv url file 
+
+pollution %>%             # pass data through pipe (%>%) 
+  pivot_wider(            # use pivot_wider function 
+  names_from =  size,     # names or character indexes of columns to spread
+  values_from =  amount)  # values are taken to a new column (a numeric string)
+```
+
+🔧 **Explanation of Arguments:**
+
+- `%>%`: The pipe operator, passing the pollution data frame into the next function.
+- `pivot_wider()`: Reshapes the data to make it wider.
+- `names_from` = size: The unique values in the 'size' column (small, large) become new column names.
+- `values_from` = amount: The values in the 'amount' column fill the new columns created from size.
+
+#### Now your turn > >
+
+#### Now use longer_data
+Let's make it as we did in 'exercise 18.1' by executing the following r 'code block'
+```{r longer-1, exercise=TRUE, exercise.lines=12}
+wide_data<- data.frame(
+  gene=c("gene1", "gene2", "gene3"),
+  treatment1=c(2,1,3),
+  treatment2=c(2,1,5),
+  ct=c(4,1,5))
+wide_data
+
+longer_data <- wide_data %>% pivot_longer(
+  cols = c(treatment1, treatment2, ct),     # we do not use all columns but last three only
+  names_to = "condition",
+  values_to = "expression")
+
+longer_data
+```
+
+You see that `longer_data` has three `columns` or variables: *gene* , *condition* and *expression*. 
+We like to return it back to `wider_data` format. How? We use `pivot_wider()` function to do that.
+#### Exercise 19.1: Use `pivot_wider` to go from long to wide
+```{r longer2, exercise=TRUE, exercise.lines=12}
+
+```
+
+
+```{r longer2-hint-1, hint=TRUE}
+wide_data<- data.frame(gene=c("gene1", "gene2", "gene3"),
+                       treatment1=c(2,1,3),
+                       treatment2=c(2,1,5),
+                       ct=c(4,1,5))
+
+longer_data<- pivot_longer(wide_data,
+                           c(treatment1, treatment2, ct),
+                           names_to = "condition",
+                           values_to = "expression")
+
+head(longer_data) # see few lines
+
+"Hint1: now turn the 'long_data' into a 'wider_data' "
+```
+
+
+```{r longer2-hint-2, hint=TRUE}
+wide_data<- data.frame(gene=c("gene1", "gene2", "gene3"),
+                       treatment1=c(2,1,3),
+                       treatment2=c(2,1,5),
+                       ct=c(4,1,5))
+
+longer_data<- pivot_longer(wide_data,
+                           c(treatment1, treatment2, ct),
+                           names_to = "condition",
+                           values_to = "expression")
+
+wider_data <- longer_data %>%  # pass data through pipe (%>%) 
+  pivot_wider(                 # use pivot_wider function 
+  names_from = condition,      # names or character indexes of columns to spread
+  values_from = expression)    # values are taken to a new column (a numeric string)
+
+wider_data                     # print wider_data object
+```
+🧠 Think and reflect yourselves on what happened when you exercised above solution, and how ?
+
+
+#### Extra Exercise 19.2: Use `pivot_wider` to go from long to wide
+
+Do this exercise as like as done in previous **example**. But do it on `storms` data set instead, so do `pivot_longer`  first then `pivot_wider`. see `hints` and then execute
+
+```{r tex2, exercise=TRUE}
+```
+
+```{r tex2-hint-1, hint=TRUE}
+"Hint 1: fist use pivot_longer() function to combine 'wind' and 'pressure' columns
+from storms data."
+```
+
+```{r tex2-hint-2, hint=TRUE}
+"Hint 2: then use pivot_wider() to restore original structure using 'Measurement' and 'Value'."
+```
+
+```{r tex2-solution}
+long_storms <- storms %>%
+  pivot_longer(cols = c("wind", "pressure"),
+               names_to = "Measurement",
+               values_to = "Value")
+
+# use of pivot_wider() function
+wide_storms <- long_storms %>%
+  pivot_wider(names_from = Measurement,
+              values_from = Value)
+head(wide_storms)
+```
+💡scroll right to see the changes >>
+
+🧠 Think and reflect yourselves on what happened when you run the above codes, and how ?
+
+### `separate()`
+In tidyr📦, the `separate()` function is used to **split one column into multiple columns** based on a 'separator' or position.
+
+Lets see the example that we saw in the lecture:
+
+Let's load and view the little `storms` data
+```{r, warning=FALSE, message=FALSE, echo=TRUE}
+library(readr) # readr package is needed to load a csv file
+storms <- read_csv("https://github.com/rstudio/EDAWR/blob/master/data-raw/storms.csv?raw=true")    # load the data from csv url file 
+storms          # print storms
+```
+
+You see above that `storms` has four `columns` or `variables`: *storm* , *wind*, *pressure* and *date*. 
+> There	are	three	more	`variables`	hidden	in the	*date* column: "year", "month", "day"! 
+
+Split the *date* column into multiple columns: "year", "month", "day". You have to specify where to split at: at hypen (-), right!
+```{r seperate, exercise=TRUE, warning=FALSE, message=FALSE}
+storms <- read_csv("https://github.com/rstudio/EDAWR/blob/master/data-raw/storms.csv?raw=true")    # load the data from csv url file 
+
+storms %>%                             # pipe pass the data
+  separate(                            # function that split
+    col = date,                        # old column
+    into = c("year", "month", "day"),  # new columns
+    sep = "-")                         # separate by -
+
+```
+🔧 **Explanation of Arguments:** 
+
+- storms` %>%`: Passes the storms data frame into the next function.
+- `separate()`: Splits one column into multiple columns.
+- `col` = date: Specifies the column to split.
+- `into` = c("year", "month", "day"): Names of the new columns to create.
+- `sep` = "-": The character used to split the values (in this case, a hyphen).
+
+
+#### Now your turn > >
+
+#### Exercise 21.1: `separate()`
+use `separate()` function on the following 'united_data'.
+`Run` the code block to generate and print the united_data frame:
+```{r warning=FALSE, message=FALSE, echo=TRUE}
+united_data <- data.frame(
+  gene_condition = c("gene1_treat1", "gene1_treat2", "gene1_ct",
+                   "gene2_treat1", "gene2_treat2", "gene2_ct",
+                   "gene3_treat1", "gene3_treat2", "gene3_ct"),
+  expression = c(2,2,4,1,1,1,3,5,5))
+
+united_data  # print data
+```
+
+See hints if needed:
+```{r exa3_2, exercise=TRUE}
+
+```
+
+```{r exa3_2-hint-1, hint=TRUE}
+united_data <- data.frame(
+  gene_condition = c("gene1_treat1", "gene1_treat2", "gene1_ct",
+                   "gene2_treat1", "gene2_treat2", "gene2_ct",
+                   "gene3_treat1", "gene3_treat2", "gene3_ct"),
+  expression = c(2,2,4,1,1,1,3,5,5))
+
+"Hint 1: copy the following codes: change the data (storms to united_data), 
+use `separate()` function on gene_condition, change the arguments according to this united_data set, 
+assign everything to separate_data object, then `print` the `separate_data`object "
+
+# use of separate() function example
+storms %>%                             # pipe pass the data
+  separate(                            # function that split
+    col = date,                        # old column
+    into = c("year", "month", "day"),  # new columns
+    sep = "-")                         # separate by -
+
+"Hint 2: `sep` argument would be different this time"
+```
+
+```{r exa3_2-hint-2, hint=TRUE}
+united_data <- data.frame(
+  gene_condition = c("gene1_treat1", "gene1_treat2", "gene1_ct",
+                   "gene2_treat1", "gene2_treat2", "gene2_ct",
+                   "gene3_treat1", "gene3_treat2", "gene3_ct"),
+  expression = c(2,2,4,1,1,1,3,5,5))
+
+# use of separate() function
+separated_data <- united_data %>% 
+  separate(col = gene_condition,
+  into = c("gene", "condition"),
+  sep = "_") 
+separated_data   # print
+
+# two new columns are created from one, right!
+```
+
+### `unite()`
+In tidyr, the `unite()` function is used to **combine multiple columns into a single column**. It's especially useful when you want to create a new identifier or merge related data into one field. It's the opposite of separate().
+
+Lets see the example as we saw from the lecture:
+Let's load and view the storms data and make a `separated_date` data
+```{r, warning=FALSE, message=FALSE, echo=TRUE}
+# library(readr) # readr package is needed to load a csv file
+storms <- read_csv("https://github.com/rstudio/EDAWR/blob/master/data-raw/storms.csv?raw=true")    # load the data from csv url file
+```
+
+And make a `separated_date` data with 
+```{r, warning=FALSE, message=FALSE, echo=TRUE}
+separated_date <- storms %>%                             # pipe pass the data
+  separate(                            # function that split
+    col = date,                        # old column
+    into = c("year", "month", "day"),  # new columns
+    sep = "-")                         # separate by -
+
+separated_date                         # print
+```
+
+You see that `separated_date` has has six `columns` or `variables`: *storm* , *wind*, *pressure*, *year*, *month* and *day*. 
+
+> Last three	`variables`	"year", "month", "day" can be merged or united. 
+
+Unite the last three `variables`	"year", "month", "day" into *date* column. You have to specify what to put at the unite point: hypen (-), right to make it a date!
+
+```{r}
+
+united_date_storms <- separated_date %>% 
+  unite("date",
+  c("year", "month", "day"),
+  sep = "-")
+
+united_date_storms  
+```
+
+🔧 **Explanation of Arguments:**
+
+- `%>%`: The pipe operator, passing the separated_date data frame into the next function.
+- `unite()`: Reshapes the data to make it wider.
+- `date`: Specifies the new column to merge.
+- c("year", "month", "day"): Names of the old columns.
+- `sep` = "-": The character used to split the values (in this case, a hyphen).
+
+#### Now your turn > >
+
+#### Exercise `unite()`
+
+```{r exa3_1, exercise=TRUE}
+separated_data <- data.frame(
+  gene=c("gene1", "gene1", "gene1", 
+         "gene2", "gene2", "gene2",
+         "gene3", "gene3", "gene3"),
+  condition=c("treat1", "treat2", "ct",
+              "treat1", "treat2", "ct",
+              "treat1", "treat2", "ct"),
+  expression=c(2,2,4,
+               1,1,1,
+               3,5,5)
+  )
+
+separated_data
+
+
+# use of unite() function
+united_data<-unite(separated_data, 
+                   gene_condition, 
+                   c(gene, condition))
+
+united_data
+```
+
+#### Exercise 20.1: Use `unite` to combine `status` and `name`
+Merge and use a separator `-` or `_` or `,` or tab/space ` `
+```{r tex3, exercise=TRUE}
+
+```
+
+```{r tex3-hint, hint=TRUE}
+"Hint: Use unite() to merge two columns with a separator."
+```
+
+```{r tex3-solution}
+# use of unite() function
+
+united_storms <- dplyr::storms %>%       # 'dplyr::' is used to specify, as there is another little storms data
+  unite("Status_Name", c("status", "name"), sep = "_")
+
+head(united_storms)
+```
+
+#### Extra Exercise 21.2: Use `separate` to split the united column
+
+```{r tex4, exercise=TRUE}
+
+```
+
+```{r tex4-hint, hint=TRUE}
+"Hint: Use separate() to split the combined column back"
+```
+
+```{r tex4-solution}
+united_storms <- dplyr::storms %>%                       # 'dplyr::' is used to specify, as there is another storms data
+  unite("Status_Name", c("status", "name"), sep = "_")
+
+# use of separate() function
+separated_storms <- united_storms %>%
+  separate("Status_Name", c("status", "name"), sep = "_")
+head(separated_storms)
+```
+
+#### Exercise 20.2 (extra): Use `unite` to combine name and year
+
+```{r tex5, exercise=TRUE}
+
+```
+
+```{r tex5-hint, hint=TRUE}
+"Hint: You can unite multiple columns like 'name' and 'year'."
+```
+
+```{r tex5-solution}
+united_name_year <- dplyr::storms %>%
+  unite("Name_Year", c("name", "year"), sep = "_")
+head(united_name_year)
+```
+
+#### Exercise 20.3 (extra): Combine year, month, day into a date column
+
+Use storm data
+```{r tex6, exercise=TRUE}
+
+```
+
+```{r tex6-hint, hint=TRUE}
+"Hint: Use unite() with three columns and customize the separator."
+```
+
+```{r tex6-solution}
+storms_with_date <- dplyr::storms %>%
+  unite("date", c("year", "month", "day"), sep = "-")
+head(storms_with_date)
+```
+
+
+##### Well done 🎉
+
+### ✅ Summary
+
+You've learned:
+
+🧱 Tidy Data Principles
+- Each variable forms a column.
+- Each observation forms a row.
+- Each type of observational unit forms a table.
+
+🔄 Reshaping Data
+- pivot_longer(): Converts wide data to long format (e.g., columns into rows).
+- pivot_wider(): Converts long data to wide format (e.g., rows into columns).
+
+🧩 Splitting and Combining Columns
+- separate(): Splits one column into multiple columns based on a separator.
+- unite(): Combines multiple columns into one, with a custom separator.
+
+🧰 General Skills Gained
+- Efficient data wrangling and reshaping.
+- Preparing data for visualization and modeling.
+- Understanding tidy data structure and workflow.
+- Using the pipe operator (%>%) to chain multiple operations.
+
+
+
+
+
+Useful links:
+
+[tidyr 1](https://tidyr.tidyverse.org)
+
+[tidyr 2](https://github.com/tidyverse/tidyr)
+
+[cheatsheet](https://github.com/RStudio/cheatsheets/blob/main/tidyr.pdf)
+
+
+Next chapter ⤵️
+
+
+## 👉Data transformation (dplyr) [W3 D1]
+
+In this chapter you will learn data 'wrangling', 'transformation' or 'manipulation' with `dplyr` package and how to generate new `columns` or results.
+
+### 🧩 dplyr packages
+
+`dplyr` functions operate on: 
+
+- A. Columns : `select()`, `mutate()`
+- B. Rows : `filter()`, `arrange()`
+- C. Groups: `summarize()`, `group_by()`
+
+**what dplyr functions have in common:**
+
+- The *first argument* is always a *data frame*. 
+- The *subsequent arguments* typically describe which *columns to operate* on using the variable names (without quotes). 
+- The *output* is always a *new data frame*.
+
+### 🧩 A. Columns
+#### `select()`
+##### Examples from the `Lecture` 
+Lets see the examples as we saw from the lecture:
+Let's load📥 and view the little `storms` data and make a `separated_date` data
+```{r, warning=FALSE, message=FALSE, echo=TRUE}
+# library(readr) # readr package is needed to load a csv file
+library(dplyr)
+storms <- read_csv("https://github.com/rstudio/EDAWR/blob/master/data-raw/storms.csv?raw=true")    # load the data from csv url file
+
+storms   # print
+```
+
+#### `select()`
+It’s not uncommon to get datasets with hundreds or even thousands of variables. In this situation, the first challenge is often just focusing on the variables you’re interested in. `select()` allows you to rapidly zoom in on a useful *subset* using operations based on the *names of the variables*:
+
+
+Select *particular* column or columns (`,`)
+```{r dplyr1, exercise=TRUE, warning=FALSE, message=FALSE}
+storms <- read_csv("https://github.com/rstudio/EDAWR/blob/master/data-raw/storms.csv?raw=true")    # load the
+storms %>% select(storm, pressure)  # only two column
+
+```
+
+Select *removing* column or columns (`-`)
+```{r dplyr2, exercise=TRUE, warning=FALSE, message=FALSE}
+storms <- read_csv("https://github.com/rstudio/EDAWR/blob/master/data-raw/storms.csv?raw=true")    # load the
+storms %>% select(-storm)
+
+```
+
+Select *range* of columns (`:`)
+```{r dplyr3, exercise=TRUE, warning=FALSE, message=FALSE}
+storms <- read_csv("https://github.com/rstudio/EDAWR/blob/master/data-raw/storms.csv?raw=true")    # load the
+storms %>% select(wind:date)
+
+```
+#### `mutate()`
+mutate() allows you to **add new columns** that are *calculated from the existing columns*
+```{r dplyr4, exercise=TRUE, warning=FALSE, message=FALSE}
+storms <- read_csv("https://github.com/rstudio/EDAWR/blob/master/data-raw/storms.csv?raw=true")    # load the
+storms %>% mutate(ratio = pressure/wind)   # new column and value
+
+```
+
+### 🧩 B. Rows
+#### `filter()`
+`filter()` allows you to keep *rows* based on the *values* of the *columns*
+```{r dplyr5, exercise=TRUE, warning=FALSE, message=FALSE}
+storms <- read_csv("https://github.com/rstudio/EDAWR/blob/master/data-raw/storms.csv?raw=true")    # load the data
+
+storms %>%
+  dplyr::filter(wind >= 50) # filter wind greater than 90 or equal
+```
+
+`filter()`
+```{r dplyr6, exercise=TRUE, warning=FALSE, message=FALSE}
+storms <- read_csv("https://github.com/rstudio/EDAWR/blob/master/data-raw/storms.csv?raw=true")    # load the
+storms %>% 
+  dplyr::filter(wind >= 50, storm %in% c("Alberto", "Alex", "Allison"))
+
+```
+
+#### `arrange()`
+`arrange()` changes the *order* of the *rows* based on the *value* of the *columns*
+```{r dplyr7, exercise=TRUE, warning=FALSE, message=FALSE}
+storms <- read_csv("https://github.com/rstudio/EDAWR/blob/master/data-raw/storms.csv?raw=true")    # load the
+
+storms %>% 
+  arrange(wind)
+
+```
+
+`arrange()`
+```{r dplyr8, exercise=TRUE, warning=FALSE, message=FALSE}
+storms <- read_csv("https://github.com/rstudio/EDAWR/blob/master/data-raw/storms.csv?raw=true")    # load the
+
+storms %>% arrange(desc(wind))
+
+```
+
+`arrange()`
+```{r dplyr9, exercise=TRUE, warning=FALSE, message=FALSE}
+storms <- read_csv("https://github.com/rstudio/EDAWR/blob/master/data-raw/storms.csv?raw=true")    # load the
+
+storms %>% arrange(wind)
+```
+
+`arrange()`
+```{r dplyr10, exercise=TRUE, warning=FALSE, message=FALSE}
+storms <- read_csv("https://github.com/rstudio/EDAWR/blob/master/data-raw/storms.csv?raw=true")    # load the
+
+storms %>% arrange(wind, date)
+
+```
+#### Combination of two functions
+
+`select() and filter()`
+```{r dplyr11, exercise=TRUE, warning=FALSE, message=FALSE}
+storms <- read_csv("https://github.com/rstudio/EDAWR/blob/master/data-raw/storms.csv?raw=true")    # load the
+
+storms %>% 
+  dplyr::filter(wind >=50) %>% 
+  select(storm, pressure)
+
+```
+
+`mutate()` & `select()`
+```{r dplyr12, exercise=TRUE, warning=FALSE, message=FALSE}
+storms <- read_csv("https://github.com/rstudio/EDAWR/blob/master/data-raw/storms.csv?raw=true")    # load the
+
+storms	%>% 
+  mutate(ratio = pressure/wind) %>% 
+  select(storm, ratio)
+
+```
+
+
+### 🧩 C. Groups
+#### `summarize()`
+`summarize()` allows you to *calculate* a single summary statistic or many *summary statistics*, *reduces* the data frame to have a single row for each group
+```{r dplyr13, exercise=TRUE, warning=FALSE, message=FALSE}
+storms <- read_csv("https://github.com/rstudio/EDAWR/blob/master/data-raw/storms.csv?raw=true")    # load the
+storms %>% 
+  summarise(median = median(pressure),variance = var(pressure))
+
+```
+
+
+#### `group_by()`
+`group_by()` allows to divide your dataset into *groups* meaningful for your analysis
+```{r dplyr14, exercise=TRUE, warning=FALSE, message=FALSE}
+pollution <- read_csv("https://github.com/rstudio/EDAWR/blob/master/data-raw/pollution.csv?raw=true")    # load the data
+
+pollution %>% 
+  group_by(city)
+```
+
+`group_by()` & `summarise()` help even better when are together
+```{r dplyr15, exercise=TRUE, warning=FALSE, message=FALSE}
+pollution <- read_csv("https://github.com/rstudio/EDAWR/blob/master/data-raw/pollution.csv?raw=true")    # load the data
+
+
+pollution %>% 
+  group_by(city) %>% 
+  summarise(mean = mean(amount),
+            sum = sum(amount), 
+            n= n())
+
+```
+city
+```{r dplyr16, exercise=TRUE, warning=FALSE, message=FALSE}
+pollution <- read_csv("https://github.com/rstudio/EDAWR/blob/master/data-raw/pollution.csv?raw=true")    # load the data
+
+pollution %>% 
+  group_by(city) %>% 
+  summarise(mean = mean(amount))
+
+```
+size
+```{r dplyr17, exercise=TRUE, warning=FALSE, message=FALSE}
+pollution <- read_csv("https://github.com/rstudio/EDAWR/blob/master/data-raw/pollution.csv?raw=true")    # load the data
+
+pollution %>% 
+  group_by(size) %>% 
+  summarise(mean = mean(amount))
+
+```
+
+tb
+```{r dplyr18, exercise=TRUE, warning=FALSE, message=FALSE}
+tb <- read_csv("https://github.com/rstudio/EDAWR/blob/master/data-raw/toyb.csv?raw=true")    # load the
+tb %>%
+group_by(country, year) %>% 
+  summarise(cases = sum(cases)) %>% 
+  summarise(cases = sum(cases))
+
+```
+
+### 🧩 Joining data
+Make two data
+Make data `y`
+```{r dplyr19-1, exercise=TRUE, warning=FALSE, message=FALSE}
+y <- data.frame(x1 = c("A", "B","C"),
+                x2 = c( 1, 2, 3))
+y
+```
+
+Make data `z`
+```{r dplyr19-2, exercise=TRUE, warning=FALSE, message=FALSE}
+z <- data.frame(x1 = c("B", "C","D"),
+                x2 = c( 2, 3, 4))
+
+z
+```
+
+#### Bind `columns` of multiple data frames
+```{r dplyr20, exercise=TRUE, warning=FALSE, message=FALSE}
+y <- data.frame(x1 = c("A", "B","C"),
+                x2 = c( 1, 2, 3))
+
+z <- data.frame(x1 = c("B", "C","D"),
+                x2 = c( 2, 3, 4))
+
+bind_cols(y,z)
+
+cbind(y, z)
+```
+
+#### Bind `rows` of multiple data frames
+```{r dplyr21, exercise=TRUE, warning=FALSE, message=FALSE}
+y <- data.frame(x1 = c("A", "B","C"),
+                x2 = c( 1, 2, 3))
+
+z <- data.frame(x1 = c("B", "C","D"),
+                x2 = c( 2, 3, 4))
+
+
+bind_rows(y, z)
+
+rbind(y,z)
+```
+
+### 🧩 Joining datasets `by common column names`
+Make data 'a'
+```{r dplyr22-1, exercise=TRUE, warning=FALSE, message=FALSE}
+a <- data.frame(x1 = c("A", "B","C"),
+                x2 = c( 1, 2, 3))
+
+a
+```
+
+Make data 'b'
+```{r dplyr22-2, exercise=TRUE, warning=FALSE, message=FALSE}
+b <- data.frame(x1 = c("A", "B","D"),
+                x3 = c( "T", "F", "T"))
+
+b
+```
+#### Left join 
+```{r dplyr23, exercise=TRUE, warning=FALSE, message=FALSE}
+a <- data.frame(x1 = c("A", "B","C"),
+                x2 = c( 1, 2, 3))
+
+b <- data.frame(x1 = c("A", "B","D"),
+                x3 = c( "T", "F", "T"))
+
+dplyr::left_join(a, b, by = "x1")
+```
+#### Right join
+```{r dplyr24, exercise=TRUE, warning=FALSE, message=FALSE}
+a <- data.frame(x1 = c("A", "B","C"),
+                x2 = c( 1, 2, 3))
+
+b <- data.frame(x1 = c("A", "B","D"),
+                x3 = c( "T", "F", "T"))
+
+dplyr::right_join(a, b, by = "x1")
+```
+
+#### Inner join
+```{r dplyr25, exercise=TRUE, warning=FALSE, message=FALSE}
+a <- data.frame(x1 = c("A", "B","C"),
+                x2 = c( 1, 2, 3))
+
+b <- data.frame(x1 = c("A", "B","D"),
+                x3 = c( "T", "F", "T"))
+
+dplyr::inner_join(a, b, by = "x1")
+```
+#### Full join
+```{r dplyr26, exercise=TRUE, warning=FALSE, message=FALSE}
+a <- data.frame(x1 = c("A", "B","C"),
+                x2 = c( 1, 2, 3))
+
+b <- data.frame(x1 = c("A", "B","D"),
+                x3 = c( "T", "F", "T"))
+
+dplyr::full_join(a, b, by = "x1")
+
+```
+
+### 🧩 **Now its your turn > >**
+
+### Exercises on long 'storms' data
+Load the data 'storms' from the dplyr package, have a look on the data (see chapter `How to look at a data set?`) and do the following data manipulation exercises -
+
+
+### 📥attach the storms dataset
+```{r attach, exercise=TRUE}
+data(storms, package = "dplyr")
+
+# check or print couple of rows 
+head(storms) # head function prints couple of lines in the console
+```
+
+
+```{r attach_view, exercise=TRUE}
+# see it as table
+View(storms) # view entire data in a separate window or click on the table
+```
+❗ Check, a separate window poped-up (`base R graphics window`)
+
+```{r attach_search, exercise=TRUE}
+# Want to read more without leaving RStudio? then 
+?storms
+```
+
+
+```{r attach_dim, exercise=TRUE}
+# we can see the types and structure of the data 
+## how many rows how many columns?
+dim(storms) # 1st place no. rows 2nd place no. of columns
+```
+
+
+```{r attach_class, exercise=TRUE}
+# attribute of the object or data
+class(storms) # is it a data.frame?
+```
+Q: Is it a data.frame? 
+A: YES
+
+```{r attach_str, exercise=TRUE}
+# Compactly Display the Structure of an Arbitrary R Object
+str(storms) # it shows you type, rows no. and few values
+glimpse(storms) # more nicer view!
+```
+
+more nicer view with `glimpse()` but no information about data overall structure
+
+Summarize storms data:
+```{r attach_sum, exercise=TRUE}
+# results
+summary(storms) # give a preview of the data, column wise
+```
+
+
+### Rows transformation
+#### 🧩 Example 
+##### filter() 
+pick the rows based on their values
+
+`filter()` let you use a logical test to **extract specific rows** from a data frame.
+To use filter(), pass it the data frame followed by one or more logical tests. 
+filter() will return every row that passes each logical test.
+
+> **Instruction** 
+Extract rows that meet certain condition:
+- try to make data set with only `hurricane`
+- try to find maximum wind of the hurricane
+- try to keep only those that have this maximum wind value
+one liner command!
+
+```{r row_example1, exercise=TRUE}
+only_hurricane <- storms %>% 
+  dplyr::filter(status = "hurricane")
+```
+❌ **Error!**
+
+Try with double equal sign `==` instead of single `=`
+```{r row_example1p1, exercise=TRUE}
+only_hurricane <- storms %>% 
+  dplyr::filter(status == "hurricane")
+
+head(only_hurricane)   # to see few lines
+```
+🚫🔸**Note on Error**: 
+
+* did you notice that we cant use '=' here, because '=' is used to assign something in R (see examples in previous R codes). 
+* `==` is used for logical comparison, tests whether two values are equal. 
+returns a logical value: TRUE or FALSE. 
+* more examples:  >, >=, <, <=, != (not equal), and == (equal).
+
+🔹 Select storms that had maximum wind speed
+```{r row_example3, exercise=TRUE}
+only_hurricane <- storms %>% 
+  dplyr::filter(status == "hurricane")
+
+max(only_hurricane$wind)
+```
+
+summary of each column(variable)
+```{r row_example14, exercise=TRUE}
+only_hurricane <- storms %>% 
+  dplyr::filter(status == "hurricane")
+
+summary(only_hurricane)
+```
+
+
+```{r row_example15, exercise=TRUE}
+2 > 5
+```
+
+storms with greater than 120 wind speed
+```{r row_example16, exercise=TRUE}
+only_hurricane <- storms %>% 
+  dplyr::filter(status == "hurricane")
+
+# 120 wind speed
+only_hurricane_wind_120 <- only_hurricane$wind > 120
+
+head(only_hurricane_wind_120)
+```
+
+storms with 160 wind speed
+```{r row_example17, exercise=TRUE}
+only_hurricane <- storms %>% 
+  dplyr::filter(status == "hurricane")
+
+# 160 wind speed
+only_hurricane_wind_160 <- only_hurricane %>% 
+  dplyr::filter(wind == 160)
+
+head(only_hurricane_wind_160)
+```
+
+storms with 'hurricane' status `and` '160' wind speed
+```{r row_example18, exercise=TRUE}
+# Multiple tests:
+# one liner
+storms %>% 
+  dplyr::filter(status == "hurricane") %>% 
+  dplyr::filter(wind == 160) %>% 
+  head()
+```
+
+Or in short:
+
+```{r row_example10, exercise=TRUE}
+# in short
+storms %>% 
+  dplyr::filter(status == "hurricane" & wind == 160) %>% 
+  head()  # Bolean operator
+```
+🔸 **examples**: These include `&` (and), pipe `|` (or), `!` (not or negation), and  `xor()` (exactly or).
+
+storms seen during the year '2020'
+```{r row_example111, exercise=TRUE}
+storms %>% 
+  dplyr::filter(year == 2020) %>% 
+  head()
+```
+
+
+```{r row_example12, exercise=TRUE}
+dim (storms)
+```
+
+keep 'NA' values using `is.na`
+```{r row_example113, exercise=TRUE}
+storms %>%  
+  dplyr::filter(is.na(tropicalstorm_force_diameter)) %>% 
+  dim()
+# is.na function keeps all 'NA' values
+```
+🔸  9512 (out of 19537) rows or (storms or observation) have `NA` value in 'tropicalstorm_force_diameter' column out of 19537
+
+### 🧩 Exercise 22: Use `filter()` to subset the data set to include only 'hurricane' with wind speed above 100 
+
+
+```{r trex1, exercise=TRUE}
+```
+
+
+```{r trex1-hint, hint=TRUE}
+"Hint: Use filter() function, hurricane is present in 'status' column, use '>' operator for  wind speciation"
+```
+
+
+```{r trex1-solution}
+strong_hurricanes <- storms %>%
+  dplyr::filter(status == "hurricane", wind > 100) # two conditions: one is hurricane 2nd wind is greater than 100
+
+# Display the subset data set, few lines
+head(strong_hurricanes)  
+```
+
+
+
+### Example Use of arrange() 
+
+changes the ordering of the rows
+
+```{r tr_example2_1, exercise=TRUE}
+storms %>%
+  arrange(name) %>% 
+  head()
+```
+
+
+```{r tr_example2_2, exercise=TRUE}
+storms %>%
+  arrange(desc(name)) %>% 
+  head()
+```
+
+
+```{r tr_example2_3, exercise=TRUE}
+storms %>%
+  arrange(name, .by_group = T) %>% 
+  head()
+```
+
+
+### 🧩 Exercise 23: Use `arrange()` to sort the data set by descending order of 'year'
+
+```{r tr_ex_2, exercise=TRUE}
+```
+
+
+```{r tr_ex_2-hint, hint=TRUE}
+"Hint 1: 
+Use the `arrange()` function from the dplyr package.
+To sort in descending order, wrap the column name with `desc()`.
+Example: arrange(desc(year))"
+```
+
+
+```{r tr_ex_2-solution}
+sorted_storms <- storms %>%
+  arrange(desc(year))
+
+# Display the sorted data set
+head(sorted_storms)
+```
+
+
+
+
+### Columns transformation
+#### Example
+##### select() 
+
+picks variables based on their `column` names.
+select one column: 'name'
+```{r tr_example3_1, exercise=TRUE}
+storms %>% 
+  select(name) %>% 
+  head()
+```
+
+select multiple columns: 'name','day','status'
+```{r tr_example3_2, exercise=TRUE}
+storms %>% 
+  select(name,day,status) %>% 
+  head()
+```
+
+select multiple columns by defining the range :'name' to 'wind', 
+use `:` sign for range
+```{r tr_example3_3, exercise=TRUE}
+storms %>% 
+  select(name:wind)
+```
+
+select if column names `start` with a specific `string` (text)
+```{r tr_example3_4, exercise=TRUE}
+storms %>% 
+  select(starts_with('tro')) %>% 
+  head()
+
+```
+
+select if column names `end` with a specific `string` (text)
+```{r tr_example3_5, exercise=TRUE}
+storms %>% 
+  select(ends_with('re'))  %>% 
+  head()
+```
+
+select if column names `contain` a specific `string` (text)
+```{r tr_example3_6, exercise=TRUE}
+storms %>% 
+  select(contains('force')) %>% 
+  head()
+```
+
+
+### Exercise 🧩 24: Use `select()` to keep only the columns "name", "year", and "wind"
+
+```{r tr_ex_3, exercise=TRUE}
+```
+
+
+```{r tr_ex_3-hint, hint=TRUE}
+"Hint: Use the `select()` function from the dplyr package.
+Provide the column names inside the function like: select(name, year, wind)"
+```
+
+
+```{r tr_ex_3-solution}
+storms %>%
+  select(name, year, wind)
+```
+
+🧑‍🏫 **old way**: if you like to make an `object` first and then display the selected columns 
+
+e.g.:
+```
+selected_columns <- storms %>%  select(name, year, wind)
+``` 
+Then call the 'object', 
+e.g.:
+```
+head(selected_columns)
+```
+🧑‍🏫 **old way**: 
+if do not want to use **pipe `(%>%)`** at all 😠,  then you need to bring storms within () bracket. Example: 
+
+```
+select(storms, name, year, wind)  # follow this style throughout the tutorials
+``` 
+
+### mutate() 
+### Example 
+
+adds new variables based on existing variables
+
+
+Modify an existing column by converting pressure from millibars to atmospheres
+`1 atm = 1013.25 millibars`:
+
+```{r tr_example4, exercise=TRUE}
+storms %>% 
+  select (name, year, pressure) %>% 
+  mutate(pressure_atm = pressure / 1013.25) %>% head()
+
+```
+
+
+
+
+### 🧩 Exercise 25: Use `mutate()` to create a new column "wind_squared" based on wind speed (with the square of the wind speed) 
+
+```{r tr_ex_4, exercise=TRUE}
+```
+
+
+```{r tr_ex_4-hint, hint=TRUE}
+"Hint:
+Use `mutate()` to create new columns.
+You can square a variable in R using `^2`, like `wind^2`.
+Example: mutate(new_column = existing_column^2)
+"
+```
+
+
+```{r tr_ex_4-solution}
+storms_mutate <- storms %>%
+  mutate(wind_squared = wind^2) # ^2 = square
+
+head(storms_mutate)
+```
+
+use of `glimpse()` function instead of `str()`
+```{r tr_ex_4_1, exercise=TRUE}
+storms_mutate <- storms %>%
+  mutate(wind_squared = wind^2) # ^2 = square
+
+# Display the dataset with the new column
+glimpse(storms_mutate)
+glimpse(storms)
+```
+
+**Like it !?** if yes you can use it instead of `str()`
+
+### 🧩 Exercise 26: Use `mutate()` to create a new column "pressure_category" based on pressure levels
+
+```{r trex5, exercise=TRUE}
+```
+
+
+```{r trex5-hint, hint=TRUE}
+"Hint: Use mutate() to create a new column.
+Use case_when() to assign different values based on conditions:
+Example:
+mutate(new_column = case_when(
+  condition1 ~ 'label1',
+  condition2 ~ 'label2'
+))
+"
+```
+
+
+```{r trex5-solution}
+mutated_storms <- storms %>%
+  mutate(
+    pressure_category = case_when( # function allows matching and do vectorise
+    pressure < 950 ~ "Low", # ~ means assigning new name 
+    pressure >= 950 & pressure < 1000 ~ "Medium", # & take two conditions or take range
+    pressure >= 1000 ~ "High")
+    )
+
+# Display the dataset with the new column
+head(mutated_storms)
+```
+
+
+```{r trex51, exercise=TRUE}
+glimpse(mutated_storms)
+```
+
+
+### 🧩 Exercise 27: select name, year and wind. 
+Then transform `wind` values from knots to miles per hour (mph).
+`1 knot = 1.15 mph`
+
+```{r tr_ex_6, exercise=TRUE}
+
+```
+
+
+```{r tr_ex_6-hint, hint=TRUE}
+"Hint:
+First, use `select(name, year, wind)` to keep only those columns.
+Then, use `mutate(wind_mph = wind / 1.15)` to convert wind to mph."
+```
+
+
+```{r tr_ex_6-solution}
+storms %>% 
+  select (name, year, wind) %>% 
+  mutate(wind_mph = wind / 1.15) %>% 
+  head()
+```
+
+
+#### group_by() 
+perform any operation “by group”
+
+it comes followed by `summarize()` function
+
+#### summarize() 
+reduces multiple values down to a single summary.
+
+Lets see an example 
+
+####🧩 Example 
+```{r tr_example7, exercise=TRUE}
+# Group by status and summarize with count of storms
+storms %>%
+  group_by(status) %>%
+  summarize(total_storms = n()) %>% head()
+```
+
+
+```{r tr_example7_1, exercise=TRUE}
+# Group by year and summarize with average wind speed
+storms %>%
+  group_by(year) %>%
+  summarize(avg_wind = mean(wind, na.rm = TRUE)) %>% 
+  head()
+```
+
+
+###🧩 Exercise 28: Use `summarise()` to find the average wind speed and maximum pressure in the dataset
+
+```{r tr_ex_7, exercise=TRUE}
+```
+
+
+```{r tr_ex_7-hint, hint=TRUE}
+"Hint:
+Use `summarise()` to compute:
+- `mean(wind)` for average wind (with `na.rm = TRUE`)
+- `max(pressure)` for maximum pressure (also use `na.rm = TRUE`)"
+
+```
+
+
+```{r tr_ex_7-solution}
+summary_stats <- storms %>%
+  summarise(avg_wind = mean(wind),
+            max_pressure = max(pressure, na.rm = TRUE))
+
+# Display the summary statistics
+head(summary_stats)
+```
+
+
+### final touch (all commands together)
+### 🧩 Example 
+```{r tr_example8, exercise=TRUE}
+storms %>% 
+  select (name, year, wind) %>%                               # select only three columns
+  mutate(wind_mph = wind / 1.15) %>%                          # making new column 'wind_mph' 
+  group_by(year) %>%                                          # group by elements in 'year'
+  summarize(avg_wind_mph = mean(wind_mph, na.rm = TRUE)) %>%  # calculate mean and make new results
+  arrange(desc(year)) %>%                                     # sort according to year
+  head()                                                      # print only few lines of the new data frame
+```
+
+
+### 🧩 Exercise 29: Use `group_by()` and `summarise()` to find the average wind speed for each status
+```{r tr_ex_8, exercise=TRUE}
+```
+
+
+```{r tr_ex_8-hint, hint=TRUE}
+# Hint:
+# - Use `group_by(status)` before using `summarise()`
+# - Use `mean(wind, na.rm = TRUE)` inside `summarise()` to handle missing values
+
+```
+
+
+```{r tr_ex_8-solution}
+avg_wind_by_status <- storms %>%
+  group_by(status) %>%
+  summarise(avg_wind = mean(wind, na.rm = TRUE)) 
+# 'na.rm = TRUE' means that missing values will be considered 
+
+# Display the average wind speed for each status
+head(avg_wind_by_status)
+```
+
+
+#### 🧩 Merge or joining data 
+Let's think there is two data sets: `x` and `y`
+
+❓ How `x` and `y` look like?
+
+##### data `x`
+```{r tr_example9_1, echo=FALSE}
+x<- data.frame(key=c("1","2","3"),
+               val_x=c("x1","x2", "x3"))
+x
+```
+
+##### data `y`
+```{r tr_example9_2, echo=FALSE}
+y<- data.frame(key=c("1","2","4"),
+               val_x=c("y1","y2", "y3"))
+y
+```
+❓ How to do different types of *joining* or *merging*?
+#### Example: Inner joining tw0 data sets `x` and `y` by a common `column names`
+```{r tr_example9_3, exercise=TRUE}
+# x
+x<- data.frame(key=c("1","2","3"),
+               val_x=c("x1","x2", "x3"))
+# y
+y<- data.frame(key=c("1","2","4"),
+               val_x=c("y1","y2", "y3"))
+
+# inner join
+inner_join(x,y,by="key")
+```
+
+
+#### 🧩 Exercise 30: Do inner joining y with x
+```{r exercise9, exercise=TRUE}
+```
+
+
+```{r exercise9-hint}
+# x
+x<- data.frame(key=c("1","2","3"),
+               val_x=c("x1","x2", "x3"))
+# y
+y<- data.frame(key=c("1","2","4"),
+               val_x=c("y1","y2", "y3"))
+#inner join
+inner_join(y,x,by="key")
+
+```
+
+
+#### Example: Left joining two data sets `x` and `y` by a common `column names`
+```{r tr_example9_4, exercise=TRUE}
+# x
+x<- data.frame(key=c("1","2","3"),
+               val_x=c("x1","x2", "x3"))
+# y
+y<- data.frame(key=c("1","2","4"),
+               val_x=c("y1","y2", "y3"))
+
+# left join
+
+left_join(y,x, by="key")
+```
+
+
+#### 🧩 Exercise 31: Do left joining y with x
+```{r exercise10, exercise=TRUE}
+
+```
+
+```{r exercise10-hint}
+# x
+x<- data.frame(key=c("1","2","3"),
+               val_x=c("x1","x2", "x3"))
+# y
+y<- data.frame(key=c("1","2","4"),
+               val_x=c("y1","y2", "y3"))
+# left join
+left_join(y,x,by="key")
+
+```
+
+#### Example: Full joining two data sets `x` and `y` by a common `column names`
+```{r tr_example9_5, exercise=TRUE}
+# x
+x<- data.frame(key=c("1","2","3"),
+               val_x=c("x1","x2", "x3"))
+# y
+y<- data.frame(key=c("1","2","4"),
+               val_x=c("y1","y2", "y3"))
+
+# full join
+full_join(x,y, by="key")
+```
+
+
+#### 🧩 Exercise 32: Do full joining y with x
+```{r exercise11, exercise=TRUE}
+
+```
+
+```{r exercise11-hint}
+# x
+x<- data.frame(key=c("1","2","3"),
+               val_x=c("x1","x2", "x3"))
+# y
+y<- data.frame(key=c("1","2","4"),
+               val_x=c("y1","y2", "y3"))
+# full joining
+full_join(y,x,by="key")
+
+```
+
+#### Example: Bind all `columns` of two data sets `x` and `y`, blindly
+
+```{r tr_example9_6, exercise=TRUE}
+# x
+x<- data.frame(key=c("1","2","3"),
+               val_x=c("x1","x2", "x3"))
+# y
+y<- data.frame(key=c("1","2","4"),
+               val_x=c("y1","y2", "y3"))
+
+
+# bind columns
+cbind(x,y)
+```
+
+
+#### 🧩 Exercise 33: Do column bind (`cbind`) y with x
+```{r exercise12, exercise=TRUE}
+
+```
+
+```{r exercise12-hint}
+# x
+x<- data.frame(key=c("1","2","3"),
+               val_x=c("x1","x2", "x3"))
+# y
+y<- data.frame(key=c("1","2","4"),
+               val_x=c("y1","y2", "y3"))
+
+
+# bind columns
+cbind(y, x)
+```
+
+#### Example: Bind all `rows` of two data sets `x` and `y`, blindly
+```{r tr_example9_7, warning=FALSE, message=FALSE, exercise=TRUE}
+
+# x
+x <- data.frame(key=c("1","2","3"),
+               val_x=c("x1","x2", "x3"))
+# y
+y <- data.frame(key=c("1","2","4"),
+               val_x=c("y1","y2", "y3"))
+
+# bind rows
+rbind(x,y)
+```
+
+#### 🧩 Exercise 34: Do row bind (`r`bind`) y with x
+```{r exercise13, exercise=TRUE}
+
+```
+
+```{r exercise13-hint}
+# x
+x<- data.frame(key=c("1","2","3"),
+               val_x=c("x1","x2", "x3"))
+# y
+y<- data.frame(key=c("1","2","4"),
+               val_x=c("y1","y2", "y3"))
+
+
+# bind rows
+rbind(y, x)
+```
+
+**Extra practice!**: Reading and exercises on 'Joining data' 
+see [here](https://r4ds.hadley.nz/joins) 
+
+##### 🙌 well done! 🎉
+
+### ✅ Summary
+
+You've learned:
+
+🔍 Data Exploration & Filtering
+
+- filter(): Selects rows based on conditions.
+- select(): Chooses specific columns.
+
+🔄 Data Transformation
+
+- mutate(): Adds or modifies columns.
+- transmute(): Creates new columns and drops the rest.
+
+📊 Summarizing Data
+
+- summarise(): Reduces data to summary statistics (e.g., mean, count).
+- group_by(): Groups data for grouped operations (used with summarise() or mutate()).
+
+🔃 Reordering and Sorting
+- arrange(): Sorts rows by one or more columns.
+
+🔗 Combining Data
+
+- bind_rows() / bind_cols(): Combines data frames by rows or columns.
+- left_join(), right_join(), inner_join(), full_join(): Merges datasets based on keys.
+
+🧰 General Skills Gained
+
+- Writing clean, readable, and efficient data manipulation code.
+- Using the pipe operator (%>%) to chain multiple operations.
+- Preparing data for visualization and modeling.
+- Working fluently with tidy data principles.
+
+
+### 🧑‍🏫 Other great resources:
+
+* [R for Data Science](https://r4ds.hadley.nz/) (online book)
+* [Data Wrangling Cheat sheet](https://www.RStudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) (pdf file)
+* [Introduction to dplyr](https://dplyr.tidyverse.org/) (online documentation)
+* [Data wrangling with R and RStudio](https://www.RStudio.com/resources/webinars/data-wrangling-with-r-and-RStudio/) (online video)
+
+
+Next chapter ⤵️
+
+## 👉Data Visualization (ggplot2) [W3 D2]
+
+In this chapter you will learn how to make graph from the scratch and improve and how to make publication oriented figures, how to save etc.
+
+### Overview
+Graphs are essential part of data analysis.
+
+
+This tutorial introduces basic data visualization 📊 techniques using `ggplot2`.
+
+<a href="https://ggplot2.tidyverse.org/logo.png" target="_blank">
+  <img src="https://ggplot2.tidyverse.org/logo.png" width="300" style="border-radius:8px;">
+</a>
+
+
+### Objectives
+
+- Load and explore data
+- Create various graph types using `geom_*()` functions
+- Use aesthetic mappings (color, size, shape, etc.)
+- Customize plots with themes and labels
+- Add statistical elements like error bars and significant letters
+- Combine and export plots
+
+---
+
+### 🧩 Step 1: Load Packages
+
+```{r install-packages, exercise=TRUE}
+# install.packages("ggplot2")  # Un-comment if not installed
+# library(tidyverse)  
+# library(ggplot2)
+```
+
+---
+
+### 🧩 Step 2: Load and Explore the Data
+The data must be cleaned up and prepared for plotting. The data must be 'tidy'. Columns must be variables and rows must be observations. The data can then be in wide or long format depending on the variables to be plotted.
+
+We will use the `mpg` data set (built-in, ready to use), which is already in a 'tidy' format.
+View few lines of the 'mpg' data:
+```{r explore-mpg-2, exercise=TRUE}
+head(mpg)
+```
+
+View structure of the 'mpg' data:
+```{r explore-mpg-1, exercise=TRUE}
+str(mpg)
+```
+
+If you have your own data make sure it is tidy as we discussed in chapter **Tidy data**
+
+---
+
+### 🧩 Step 3: Create a plot  • `Syntax`
+
+`ggplot2` has a consistent logic and more structured code for plotting. There is bit of a learning curve, but once the code syntax and the logic is clear, it becomes easy to plot a huge variety of graphs.
+
+The Grammar Of Graphics 
+
+<a href="https://bookdown.org/gavinmasterson/dvfc/images/_2_ggplot_basics3.png" target="_blank">
+  <img src="https://bookdown.org/gavinmasterson/dvfc/images/_2_ggplot_basics3.png" width="500" style="border-radius:8px;">
+</a>
+
+#### Basic Scatterplot
+
+#####  Data
+Let's write first `ggplot()` function and put the data in there
+
+```{r basic-plot, exercise=TRUE}
+ggplot(data = mpg)           # add data
+```
+You see a gray 'canvas' with nothing is plotted at all!
+
+##### Aesthetics or mapping
+
+Aesthetics are used to assign values to geometries. For example, a set of points can be a fixed size or can be different colors or sizes denoting a variable.
+
+Now  `mapping`, with `aes()` function: 
+It will define who (data columns) goes where: who goes to x axis and who goes to y axis
+
+```{r basic-scatterplot-1-1, exercise=TRUE}
+ggplot(data = mpg, mapping = aes(
+  x = displ,                  # x axis
+  y = hwy))                   # y axis
+```
+You see a gray 'canvas' with x and y axis, but still nothing is plotted at all!
+
+
+```{r basic-scatterplot-1, exercise=TRUE}
+ggplot(data = mpg, mapping = aes(
+  x = displ, 
+  y = hwy)) +                      # to add next layer or function, we use '+' in ggplot
+  geom_point()                     # scatter plot function
+```
+📊 You see a scatter plot on gray 'canvas' with 'displ' as x as and 'displ' as y axis.  
+
+###### Or
+
+```{r basic-scatterplot-2, exercise=TRUE}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(
+    x = displ, 
+    y = hwy))
+
+```
+📊 You see a scatter plot on gray 'canvas' with 'displ' as x axis and 'displ' as y axis.  
+
+###### Get the difference?🤔
+
+`universal` vs `local variable`:
+
+- first plot has aesthetics- (x and y) as `universal` (irespective of plot type) : x and y within ggplot() function, 
+- second plot has aesthetics as `local`: x and y within geom_point() function, we will see more examples in the future, then you can trace them, no worries.
+
+---
+
+### 🎨 Aesthetics
+
+#### Aesthetic `mapping`
+Add color
+
+```{r color-shape, exercise=TRUE}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(
+    x = displ, 
+    y = hwy, 
+    color = class))               # color aesthetics
+```
+#### Aesthetic `mapping`
+### Scales • `Shape`
+add another mpg variable or column with `shape` aesthetics 
+```{r color-shape-2, exercise=TRUE}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(
+    x = displ, 
+    y = hwy, 
+    color = class, 
+    shape = trans))
+```
+
+⚠️  By default, you can define only maximum of **6** `shapes`, so *check* your column that goes to `shape` aesthetics. If it there are more than 6 categories in your column, you may try other aesthetic.
+
+#### Aesthetic `parameter`
+add custom `shape` , but not in aesthetics 
+```{r color-shape-3, exercise=TRUE}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(
+    x = displ, 
+    y = hwy, 
+    color = class), 
+    shape = 11)
+```
+Try different `shape.`
+Hints: `3` instead of `11`
+
+### Exercise: aesthetics
+**Try to use `size`, and `alpha` as mapping aesthetics in the following r codes. See what they do to the graphs**
+
+```{r aes-exer-1, exercise=TRUE, fig.height=10}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(
+    x = displ, 
+    y = hwy, 
+    color = class, 
+    shape = trans))
+
+
+```
+
+
+```{r aes-exer-1-hint-1, hint=TRUE, fig.height=10}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(
+    x = displ, 
+    y = hwy, 
+    color = class, 
+    shape = trans,
+    size= xxx , 
+    alpha= xxx ))
+```
+
+
+```{r aes-exer-1-hint-2, hint=TRUE, fig.height=10}
+# We choose 2
+ggplot(data = mpg) +
+  geom_point(mapping = aes(
+    x = displ, 
+    y = hwy, 
+    color = class, 
+    shape = trans,
+    size= cyl, 
+    alpha= cty))
+```
+
+---
+
+### 🧩 Faceting for Multiple Plots
+
+-   `Split a plpt to subplots` based on variable(s), 
+
+#### Facets • `facet_wrap`
+
+-   Faceting in `one dimension`: use facet_wrap
+
+```{r faceting-1, exercise=TRUE}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(
+    x = displ, 
+    y = hwy)) +
+  facet_wrap(~ class, nrow = 1)
+```
+
+📌 **notes**:
+`facet_wrap` is used to split a plot into subplots based on the categories in one or more variables.
+
+#### Facets • `facet_grid`
+
+-   Faceting in `two dimensions`
+-  try `year` vs `class`
+
+```{r faceting-2, exercise=TRUE}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(
+    x = displ, 
+    y = hwy)) +
+  facet_grid(year ~ class)
+```
+
+📌 **notes**: `facet_grid` is also used to split a plot into subplots based on the categories in one or more variables. `facet_grid` can be used to create a matrix-like grid of two variables.
+
+---
+
+### 🧩 Add Smooth Line `geom_smooth()`
+
+```{r smooth-line-1, exercise=TRUE}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(
+    x = displ, 
+    y = hwy)) +
+  geom_smooth()
+```
+❌ !! ERROR !! 
+
+🐛 **Explanation**: 
+it is a issue of `universal and local variables`. We did not define any x or y at `local` level which here `geom_smooth()`, we need to define that if we do not define at `universal` level 
+
+
+🧯 **Solution**:
+just take the mapping part to univesal level
+```{r smooth-line-2, exercise=TRUE}
+ggplot(data = mpg, mapping = aes(
+    x = displ, 
+    y = hwy)) +
+  geom_point() +
+  geom_smooth()
+```
+
+
+Or just take the mapping part to next local level, here within `geom_smooth()`
+```{r smooth-line-3, exercise=TRUE}
+ggplot(data = mpg,) +
+  geom_point( mapping = aes(
+    x = displ, 
+    y = hwy)) +
+  geom_smooth( mapping = aes(
+    x = displ, 
+    y = hwy))
+```
+
+
+which one is easier? use any.
+
+
+---
+
+### Geometry • `geom_*()`
+Geoms are the geometric components of a graph such as points, lines etc used to represent data. The same data can be visually represented in different geoms. For example, points or bars. Mandatory input requirements change depending on geoms.
+
+#### 🧩 Create a Bar Graph `geom_bar()`
+
+We now use the `diamonds` data set.
+
+```{r bar-plot, exercise=TRUE}
+ggplot(data = diamonds) +
+  geom_bar(mapping = aes(
+    x = cut))
+```
+
+---
+
+##### 🧩 Sacle • `Fill`
+Use Custom Fill Colors by using scale_XXXX_manual() function
+```{r bar-custom-fill, exercise=TRUE}
+ggplot(data = diamonds) +
+  geom_bar(mapping = aes(
+    x = cut, 
+    fill = cut)) +
+  scale_fill_manual(values = c("seagreen", "lightcoral", "blue", "yellowgreen", "black"))
+```
+
+---
+
+#### 🧩 Boxplot and Violin Plot `geom_boxplot()`
+
+```{r box-violin, exercise=TRUE}
+ggplot(data = mpg, aes(x = class, y = hwy)) +
+  geom_boxplot() +
+  geom_jitter(width = 0.2, alpha = 0.5)
+```
+
+---
+
+#### 🧩 Change Coordinate System `coord_flip()`
+
+```{r flip-coord, exercise=TRUE}
+ggplot(data = mpg, aes(x = class, y = hwy)) +
+  geom_boxplot() +
+  coord_flip()
+```
+
+---
+
+#### 🧩 Polar Coordinates `coord_polar()`
+
+```{r polar-coord, exercise=TRUE}
+ggplot(data = diamonds) +
+  geom_bar(mapping = aes(x = cut, 
+                         fill = cut), 
+           width = 1, 
+           show.legend = FALSE) +
+  coord_polar()
+```
+
+---
+
+### 🧩 Enhanced Theming and Titles
+Themes allow to modify all non-data related components of the plot. This is the visual appearance of the plot. Examples include the axes line thickness, the background color or font family.
+
+
+```{r custom-theme, exercise=TRUE}
+ggplot(data = diamonds) +
+  geom_bar(mapping = aes(
+    x = cut, 
+    fill = cut)) +
+  scale_fill_manual(values = c("seagreen", "lightcoral", "blue", "yellowgreen", "black")) +
+  theme_classic() +
+  labs(title = "Diamond Cut Distribution", 
+       x = "Cut", 
+       y = "Count")
+```
+
+---
+
+### 🧩 Save 💾 Your Plot `ggsave()`
+
+```{r save-plot}
+ggsave("bargraph1.jpg", width = 8, height = 10, dpi = 400)
+```
+
+---
+
+### Advanced plotting
+
+### 🧩 Add Error Bars `geom_errorbar()` and Significant Letters
+
+```{r error-bars, exercise=TRUE}
+library(agricolae)  # For agricultural statistics, including LSD.test
+library(stats)      # For basic statistical functions like aov()
+
+# Perform one-way ANOVA to test if mean price differs by cut
+anova <- aov(price ~ cut, data = diamonds)
+
+# Perform LSD (Least Significant Difference) test for multiple comparisons
+LSD_DB <- LSD.test(
+  y = diamonds$price,               # Response variable
+  trt = diamonds$cut,               # Treatment groups (cut levels)
+  DFerror = anova$df.residual,     # Degrees of freedom for residuals from ANOVA
+  MSerror = deviance(anova)/anova$df.residual,  # Mean square error from ANOVA
+  group = TRUE                      # Return groupings of means
+)
+
+# Calculate mean and standard error of price for each cut group
+meanSE_DB <- diamonds %>%
+  group_by(cut) %>%                 # Group data by cut
+  summarise(
+    avg_DB = mean(price),          # Calculate mean price
+    se = sd(price)/sqrt(n())       # Calculate standard error of the mean
+  )
+
+# Order LSD group labels alphabetically by cut
+ascend_DB <- LSD_DB$groups[order(rownames(LSD_DB$groups)), , drop = FALSE]
+
+# Create a bar plot with error bars and LSD group labels
+ggplot(meanSE_DB, aes(x = cut, y = avg_DB, fill = cut)) +
+  geom_bar(stat = "identity", color = "black") +  # Bar plot of average prices
+  geom_errorbar(aes(ymin = avg_DB - se, ymax = avg_DB + se), width = 0.2) +  # Error bars
+  geom_text(aes(label = ascend_DB$groups), vjust = -0.5) +  # Add LSD group labels above bars
+  theme_minimal()  # Use a minimal theme for clean appearance
+```
+
+---
+
+### ✅ Summary
+
+You’ve learned how to:
+
+- Create and customize ggplots
+- add layers or geoms of the grammar of graphics
+- Use facets and coordinate systems
+- Add statistical annotations
+- Save high-quality graphics
+
+Continue practicing and try creating plots using your own data sets!
+
+---
+
+### 💡 Exercise (Optional)
+
+Create a plot comparing `hwy` across `manufacturer` using `geom_violin()` and customize it with `color()` and `themes()`.
+
+```{r challenge, exercise=TRUE}
+# Your turn!
+```
+
+
+```{r challenge-hint-1, hint=TRUE}
+"Hints: 
+Use the ggplot2 package.
+
+ggplot(data, aes(x, y)) + geom_violin() is the basic structure.
+
+To flip the axes for better readability, consider coord_flip().
+
+You can customize the color using fill = manufacturer inside aes() or outside for a single color.
+
+Try adding a theme like theme_minimal() or theme_classic() for style."
+```
+
+
+```{r challenge-hint-2, hint=TRUE}
+ggplot(data = mpg, aes(x = manufacturer, y = hwy, fill = manufacturer)) +
+  geom_violin() +
+  theme_minimal() +                 # Clean minimal theme
+  labs(title = "Highway MPG by Manufacturer",
+       x = "Manufacturer",
+       y = "Highway MPG") +
+  theme(legend.position = "none")   # Removes redundant legend
+```
+
+```{r challenge-hint-3, hint=TRUE}
+ggplot(data = mpg, aes(x = manufacturer, y = hwy, fill = manufacturer)) +
+  geom_violin() +
+  coord_flip() +                    # Flips axes to make manufacturer names readable 
+  theme_minimal() +                 # Clean minimal theme
+  labs(title = "Highway MPG by Manufacturer",
+       x = "Manufacturer",
+       y = "Highway MPG") +
+  theme(legend.position = "none")   # Removes redundant legend
+
+```
+
+### More resources:
+
+-   [**ggplot2 book**](https://ggplot2-book.org/)\
+    ![](https://ggplot2-book.org/cover.jpg){height="200px"}\
+-   [**The R cookbook**](https://r-graphics.org/)\
+    ![](https://r-graphics.org/cover.jpg){height="200px"}
+-   [**ggplot2 official reference**](http://ggplot2.tidyverse.org/reference/)\
+-   [**RStudio cheatsheet**](https://www.RStudio.com/resources/cheatsheets/)\
+-   [**r-statistics ggplot2 cheatsheet**](http://r-statistics.co/ggplot2-cheatsheet.html)\
+-   [**StackOverflow**](https://stackoverflow.com/)\
+-   Blogs, [R-Bloggers](https://www.r-bloggers.com/), [Cedric Scherer](https://www.cedricscherer.com/tags/ggplot2/) etc.
+
+
+Next chapter ⤵️
+
+
+## 👉Statistics in R [W3 D3]
+
+In this chapter, you will learn how to apply `stats` in data or variables and which stats is used for which kind of data.
+
+### 📥 Load the 'Forest' data
+
+```{r load-data-1, include=FALSE, message=FALSE}
+# Forest <- read.table('Forest.txt', header = TRUE)
+```
+
+*First few lines* of the 'Forest' data:
+```{r load-data-3-1, warning=FALSE, message=FALSE}
+Forest <- read.table(url("https://raw.githubusercontent.com/abu85/datasets/refs/heads/main/Forest.txt"), header = TRUE)  # load the 'forest' data from website (url)
+head(Forest)   # print few lines
+```
+
+*Structure* of the 'Forest' data:
+```{r load-data-3-2, warning=FALSE, message=FALSE}
+Forest <- read.table(url("https://raw.githubusercontent.com/abu85/datasets/refs/heads/main/Forest.txt"), header = TRUE) # load the 'forest' data 
+str(Forest)                           # see structures of the data
+```
+
+use `head()`  & `str()` to explore its structure.
+```{r load-data-3-3, exercise=TRUE, warning=FALSE, message=FALSE}
+# HINT: Use `read_table()` to load data from 'Forest.txt' 
+
+Forest <- read.table(url("https://raw.githubusercontent.com/abu85/datasets/refs/heads/main/Forest.txt"), header = TRUE) # load the 'forest' data 
+head(Forest)
+str(Forest)
+```
+- Q. Have you noticed anything? 
+- A. 'Damage' variable has two `catagories` or groups: '1' and '2' 
+We will need these groups in `two samples t-test` in the future
+
+
+Extract 'Height' variable and view 'Height'. That means: create an object from the variable 'Height' and print
+```{r load-data-4, include=TRUE, warning=FALSE, message=FALSE, exercise=TRUE}
+Forest <- read.table(url("https://raw.githubusercontent.com/abu85/datasets/refs/heads/main/Forest.txt"), header = TRUE)
+
+Height <- Forest$Height  # create an object from the variable 'Height'
+
+Height                   # print
+```
+
+
+calculate `mean`, `standard deviation` and `length` of the 'Height' variable
+```{r one-sample-ttest-2, exercise=TRUE, warning=FALSE, message=FALSE}
+Forest <- read.table(url("https://raw.githubusercontent.com/abu85/datasets/refs/heads/main/Forest.txt"), header = TRUE)
+
+Height <- Forest$Height # create an object from the variable 'Height'
+
+mean(Height)   # calculate average or mean 
+sd (Height)    # calculate Standard deviation (sd)
+length(Height) # calculate length of the data 
+```
+
+### 📊 One Sample t-test
+
+perform a `one sample t-test` to compare the mean Height with constant 6
+
+```{r one-sample-ttest-1, exercise=TRUE, warning=FALSE, message=FALSE}
+Forest <- read.table(url("https://raw.githubusercontent.com/abu85/datasets/refs/heads/main/Forest.txt"), header = TRUE)
+
+# create an object from the variable 'Height'
+Height <- Forest$Height  # create an object from the variable 'Height'
+
+# Use t.test() with mu = 6 to compare against the constant 6.
+
+t.test(Height, mu = 6)   # t-test
+
+# or
+# t.test(Height, mu = 6, alternative = "two.sided")
+```
+
+### 🔍 Two Samples t-test (Height by Damage class)
+
+Do the `two samples t-test`
+
+```{r two-sample-ttest-1, exercise=TRUE, warning=FALSE, message=FALSE}
+Forest <- read.table(url("https://raw.githubusercontent.com/abu85/datasets/refs/heads/main/Forest.txt"), header = TRUE)
+
+# create an object from the variable 'Height'
+Height <- Forest$Height  # assign object Height
+
+# create an object from the variable 'Damage'
+Damage <- Forest$Damage  # assign object Damage
+
+cat("Damage variable has two groups in it, either '1' or '2':\n", Damage) # 'cat' prints the texts and '\n' give a break and print rest in a new line
+
+# Subset Height based on Damage groups
+Height1 <- Height[Damage == 1] # group 1
+Height2 <- Height[Damage == 2] # group 2
+
+# Welch t-test
+t.test(Height1, Height2) # t.test
+
+```
+
+perform a t-test by '*homogeneous variance*'
+```{r two-sample-ttest-3, exercise=TRUE, warning=FALSE, message=FALSE}
+Forest <- read.table(url("https://raw.githubusercontent.com/abu85/datasets/refs/heads/main/Forest.txt"), header = TRUE)
+
+# create an object from the variable 'Height'
+Height <- Forest$Height
+
+# create an object from the variable 'Height'
+Damage <- Forest$Damage
+Damage
+
+# Subset Height based on Damage groups
+Height1 <- Height[Damage == 1] # Damage group 1
+Height2 <- Height[Damage == 2] # Damage group 2
+
+# Student t-test (equal variance)
+t.test(Height1, Height2, var.equal = TRUE)
+```
+
+### 🍒 Paired t-test with Cherry Dataset
+
+* Upload the data
+
+* create an object with cherry yield from the 1st year
+
+* create an object with cherry yield from the 2st year
+
+* perform a paired t-test to compare the mean yields from two years  
+
+```{r paired-ttest, exercise=TRUE}
+# upload cherry data
+# Cherry <- read.table('Cherry.txt', header = TRUE)
+Cherry <- read.table(url("https://raw.githubusercontent.com/abu85/datasets/refs/heads/main/Cherry.txt"), header = TRUE)
+
+# year objects
+Year1 <- Cherry$Year1 # assign Year1
+cat ("Year1: ", Year1) # 'cat' prints texts and object
+
+Year2 <- Cherry$Year2  # assign Year2
+cat ("Year2: ", Year2)
+
+
+# paired t test
+t.test(Year1, Year2, paired = TRUE)
+```
+
+
+```{r paired-ttest-dif, exercise=TRUE, warning=FALSE, message=FALSE}
+# upload cherry data
+Cherry <- read.table(url("https://raw.githubusercontent.com/abu85/datasets/refs/heads/main/Cherry.txt"), header = TRUE)
+
+# year objects
+Year1 <- Cherry$Year1
+Year2 <- Cherry$Year2
+
+Diff <- Year1 - Year2
+mean(Diff)
+sd(Diff)
+```
+
+### 🍒 Two Sample t-test 
+Use Cherry data set (Cherry yields) 
+
+* create objects: Year1 and Year2 
+
+* perform t-test assuming the variance is equal 
+
+```{r cherry-two-sample-ttest, exercise=TRUE}
+# HINT: This is an unpaired t-test with var.equal = TRUE.
+Cherry <- read.table(url("https://raw.githubusercontent.com/abu85/datasets/refs/heads/main/Cherry.txt"), header = TRUE)
+Year1 <- Cherry$Year1
+Year2 <- Cherry$Year2
+
+t.test(Year1, Year2, var.equal = TRUE)
+```
+
+### 📈 One-Way ANOVA
+use 'Volume' data set & perform ANOVA:
+
+* create an object 'Phos'from the variable'PHOS', 
+*PHOS means Phosphorous (Chemical compound)*
+
+* change the 'data type': convert the object 'Phos' to factor 
+
+* create a new object 'mod.1' with results of ANOVA and display its content
+
+```{r anova-oneway, exercise=TRUE}
+# HINT: Convert PHOS to a factor and use aov() for ANOVA.
+# Volume <- read.table('Volume.txt', header = TRUE)
+Volume <- read.table(url("https://raw.githubusercontent.com/abu85/datasets/refs/heads/main/Volume.txt"), header = TRUE)
+
+str(Volume)
+
+# change the data type to factor
+Phos <- as.factor(Volume$PHOS) # factorization
+cat ("Phos: ", Phos) # PHOS or Phos is another grouping
+
+# create a new object 'Vol' from the variable 'VOL'
+Vol <- Volume$VOL
+cat ("Vol: ", Vol) # 'cat' prints
+
+# perform ANOVA 
+# create a new object 'mod.1' with results of ANOVA
+mod.1 <- aov(Vol ~ Phos) # aov perform ANOVA 
+
+# and display its content
+summary(mod.1) # display the analysis
+```
+
+### 🔗 Correlation Analysis
+Make correlation between 'DBH' and 'Height' variables or columns 
+
+* use Forest data set and create objects
+* calculate the Pearson correlation coefficient 
+* do significance test of the correlation coefficient 
+
+
+```{r correlation, exercise=TRUE}
+# HINT: Use cor() and cor.test() to analyze correlation.
+# Forest <- read.table('Forest.txt', header = TRUE)
+Forest <- read.table(url("https://raw.githubusercontent.com/abu85/datasets/refs/heads/main/Forest.txt"), header = TRUE)
+
+DBH <- Forest$DBH
+cat ("DBH: \n", DBH) # to see what values they are in 'DBH'
+
+
+Height <- Forest$Height
+Height
+cat ("Height: \n", Height) # to see what values they are in 'Height'
+
+# Pearson correlation between DBH and Height
+cor(DBH, Height)
+
+# Significance test of the corellation coefficient
+cor.test(DBH, Height)
+```
+
+### 📉 Simple Linear Regression
+Fit a linear regression model to the data and display the summary of the results
+
+```{r regression, exercise=TRUE}
+# HINT: Use lm() to fit the model and abline() to add regression line.
+# Forest <- read.table('Forest.txt', header = TRUE)
+Forest <- read.table(url("https://raw.githubusercontent.com/abu85/datasets/refs/heads/main/Forest.txt"), header = TRUE)
+
+DBH <- Forest$DBH
+
+Height <- Forest$Height
+
+# apply linear model (lm)
+myfit <- lm(Height ~ DBH) 
+
+# summary of the model
+summary(myfit)
+
+# quick plot
+plot(DBH, Height, pch = 16, col = 'blue') # scatter plot
+abline(myfit, col = 'red') # Add Straight Lines to a Plot
+legend(x = 14, y = 5, legend = "observations", pch = 16, col = 'blue') # put a legend
+```
+
+### 🔁 Regression DBH on Height
+Fit a linear regression model to the data and display the summary of the results  
+* change of variables: Regression DBH on Height
+ 
+* DBH becomes dependent, Height becomes independent
+ 
+* test the opposite too. Height becomes dependent, DBH becomes independent
+
+```{r regression-reverse, exercise=TRUE, warning=FALSE, message=FALSE}
+Forest <- read.table(url("https://raw.githubusercontent.com/abu85/datasets/refs/heads/main/Forest.txt"), header = TRUE)
+
+DBH <- Forest$DBH
+Height <- Forest$Height
+
+# HINT: Swap dependent and independent variables.
+myfit.1 <- lm(DBH ~ Height, data = Forest)
+summary(myfit.1)
+
+# test the opposite 'Height ~ DBH'
+
+```
+
+
+### 📊 ANOVA for Linear Regression
+
+Test for Significance of a Linear Regression with ANOVA 
+
+* create objects with variables 
+* fit Linear Regression model `lm` 
+* do ANOVA
+
+```{r anova-regression, exercise=TRUE, warning=FALSE, message=FALSE}
+Forest <- read.table(url("https://raw.githubusercontent.com/abu85/datasets/refs/heads/main/Forest.txt"), header = TRUE)
+
+DBH <- Forest$DBH
+Height <- Forest$Height
+
+# HINT: Use anova() to test the linear regression.
+myfit <- lm(Height ~ DBH, data = Forest)
+
+# ANOVA
+anova(myfit)
+```
+You've practiced multiple statistical tests using real data sets.
+
+##### Well done !
+
+### ✅ Summary
+You have learned how to do: 
+
+- one sample t-test
+- two samples t-test
+- paired t-test
+- one way ANOVA
+- correlation analysis
+- LR (linear regression)
+- ANOVA on LR
+
+✅ Great finish!!! 🏁 🏆  
+
+### 🎉  Congratulations! 
+
+## 👉Bring your own data analysis [W4 D4]
+
+> 🧠 In this chapter, you can play with your own data based on your learning. And present some results (not mendatory) or ask question etc. [If you do not have any data, download 📥 any dataset from this link ](https://github.com/rfordatascience/tidytuesday/tree/main/data) and **apply** some data `tiding` and `manipulation`, `ploting` some figures out of it or use some `statistical tests` with R.
+
+
+💡**Future direction: Intermediate to Advanced R**: [R for Data Science](https://r4ds.hadley.nz/) (online book)
+
+#### That's it with the `R Foundation` workshop
+
+### The End 🥳 🎯
+
+
+© Global Bioinformatics Hub (GBH)
+
+🌍 License: This work is licensed under a Creative Commons Attribution 4.0 International License (CC BY 4.0).
